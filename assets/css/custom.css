@@ -1,0 +1,29 @@
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
+
+/*# sourceMappingURL=custom.css.map */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.otp {
+  margin-right: 12px;
+  text-align: center ;
+  padding: 0px 12px !important;
+}
+
+.otp:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #ff8880;
+  outline: 0;
+  box-shadow: none
+}
