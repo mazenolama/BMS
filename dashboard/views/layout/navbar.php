@@ -10,7 +10,9 @@
     </ul>
     </div>
     <ul class="navbar-nav navbar-right">
-    <?php include_once('notifications.php'); ?>
+    <?php if($user_info['role'] == 'Admin'): ?>
+        <?php include_once('notifications.php'); ?>
+    <?php endif; ?>
     <li class="dropdown"><a href="#" data-toggle="dropdown"
         class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <figure class="avatar mr-2 avatar-sm bg-success text-white" style="font-size: 15px;height: 40px;width: 40px;" data-initial="<?=$user_info["fname_letter"] . $user_info["lname_letter"] ?>"></figure> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">

@@ -31,7 +31,7 @@
 
     /***************        Get Notifications              ***************/
         
-        $query = "SELECT * FROM `notifications` WHERE 1 ORDER BY created_at DESC";
+        $query = "SELECT * FROM `notifications` WHERE status='unread' ORDER BY created_at DESC";
         $execute = mysqli_query($con, $query);
         $fetch_notify = array();
         if($execute || isset($_SESSION['success'])){
@@ -41,7 +41,7 @@
                 }
             }
             else{
-                $errors['notifications'] = 'No Data To Show';
+                $errors['notifications'] = 'No New Notifications To Show';
             }
         }
         else{
@@ -64,6 +64,15 @@
                 echo $_GET['page'];
             else
                 echo 'Dashboard' ;
+        }
+    /**************  Get Page Name Function ***************/
+
+    /**************  Get Page Name Function ***************/
+        if(array_key_exists('flush', $_POST)){
+            $con =  dbConnection();
+            $query ="UPDATE notifications SET status='read' WHERE status='unread'";
+            mysqli_query($con, $query);
+            die("<script>window.location = 'index.php'; window.reload();</script>");
         }
     /**************  Get Page Name Function ***************/
 

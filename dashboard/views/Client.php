@@ -9,19 +9,20 @@
                         <form  >
                             <div class="card-header"  style="display: flex;justify-content: space-between;">
                                 <h4>Client : #<?=$_GET['c_id']; ?></h4>
-                                
-                                <div style="text-align: right;">
-                                    <a href="index.php?page=Edit-Client&c_id=<?=$_GET['c_id'];?>">
-                                        <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit This Client">
-                                            <i class="far fa-edit"></i>
-                                        </button>
-                                    </a>
-                                    <a href="index.php?action=delete-client&c_id=<?=$_GET['c_id'];?>">
-                                        <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This Client">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </a>
-                                </div>
+                                <?php if($user_info['role'] == 'Admin'): ?>
+                                    <div style="text-align: right;">
+                                        <a href="index.php?page=Edit-Client&c_id=<?=$_GET['c_id'];?>">
+                                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit This Client">
+                                                <i class="far fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a href="index.php?action=delete-client&c_id=<?=$_GET['c_id'];?>">
+                                            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This Client">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <?php 
                                 if(count($errors) > 0) { ?>

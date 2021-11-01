@@ -5,13 +5,15 @@
     </a>
 
     <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
-        <div class="dropdown-header"> Notifications
-           <!--<div class="float-right"> 
-                <a href="#" id="flush">Mark All As Read</a>
-            </div>-->
+        <div class="dropdown-header" style="display: flex;justify-content: space-between;"> Notifications
+        <?php if(count($fetch_notify)>0): ?>
+           <form method="post">
+                <input name="flush" value="Mark All As Read" type="submit" style="border-style: none;background: transparent;color: #0000bf;font-weight: 600;">
+           </form>
+        <?php endif; ?>
         </div>
         <div class="dropdown-list-content dropdown-list-message">
-        <?php 
+            <?php 
             if(count($fetch_notify)>0){
                 foreach($fetch_notify as $fetch) {?>
             <div class="dropdown-item"> 
