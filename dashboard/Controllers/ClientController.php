@@ -1,10 +1,9 @@
 <?php
     
-    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
-    $dotenv->load();
+    require_once("database/Database.php");
     $con = dbConnection();
     $errors = array();
-
+    
     /***************         Get All Clients               ***************/
         $query = "SELECT * FROM `clients` WHERE 1 ORDER BY created_at DESC";
         $execute = mysqli_query($con, $query);
@@ -40,7 +39,7 @@
         if(!empty($fname_client) && !empty($lname_client) && !empty($email_client) && !empty($phone_no_client)){
             $query = " INSERT INTO clients (fname, lname, companyName, companyURL, email, phone_no, address)
                        VALUES ('$fname_client', '$lname_client', '$companyName', '$companyURL','$email_client','$phone_no_client',' $address');";
-            $query .="INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$userName')";
+            $query .="INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
             
             if(mysqli_multi_query($con, $query)){
                 $_SESSION['success'] = 'Created A New Client Successfully';
@@ -79,7 +78,7 @@
                         if(!empty($fname_client) && !empty($lname_client) && !empty($email_client) && !empty($phone_no_client)){
                             $datetime = date_create()->format('Y-m-d H:i:s');
                             $query  = " UPDATE clients SET fname='$fname_client',lname='$lname_client',companyName='$companyName',companyURL='$companyURL',email='$email_client',phone_no='$phone_no_client',address='$address',updated_at='$datetime' WHERE id='$c_id';";
-                            $query .= "INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$userName')";
+                            $query .= "INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
                             
                             if(mysqli_multi_query($con, $query)){
                                 $_SESSION['success'] = 'Updated An Existing Client Successfully';
@@ -111,7 +110,7 @@
         {
             $notfiy = 'Has Deleted A Client';
             $query = "DELETE FROM `clients` WHERE id='$c_id';";
-            $query .= "INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$userName')";
+            $query .= "INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A Client Successfully';

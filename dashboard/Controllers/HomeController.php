@@ -1,25 +1,24 @@
 <?php
-    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
-    $dotenv->load();
     session_start();
-    $con = dbConnection();
-
+    require_once("database/Database.php");
+    $con =  dbConnection();
     $errors = array();
+    unset ($_SESSION["password"]);
     /***************    Checking Vaild Authorization       ***************/
         $email = $_SESSION['email'];
-        unset ($_SESSION["password"]);
         if(!empty($email)){
             $sql = "SELECT * FROM users WHERE email = '$email'";
             $row = mysqli_query($con, $sql);
             if($row){
                 $fetch_info = mysqli_fetch_assoc($row);
-                $fname_user = $fetch_info['fname'];
-                $lname_user = $fetch_info['lname'];
-                $fname_letter= ucfirst($fname_user[0]);
-                $lname_letter= ucfirst($lname_user[0]);
-                $phone_no = $fetch_info['phone_no'];
-
-                $userName =$fname_user .' ' . $lname_user;
+                
+                $user_info = array("fname" => $fetch_info['fname'],
+                                   "lname" => $fetch_info['lname'],
+                                   "full_name" =>  $fetch_info['fname'].' '.$fetch_info['lname'],
+                                   "fname_letter" => ucfirst($fetch_info['fname'][0]),
+                                   "lname_letter" => ucfirst($fetch_info['lname'][0]),
+                                    "phone_no" => $fetch_info['phone_no']);
+                $full_name =$user_info['full_name'];
             }
         }
         else{

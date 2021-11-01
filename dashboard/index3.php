@@ -1,6 +1,6 @@
 <?php
-require_once('../vendor/autoload.php');
-require_once('../database/config.php');
+require_once('./vendor/autoload.php');
+require_once('./database/config.php');
 require_once './Controllers/HomeController.php';
 
 ?>
@@ -454,7 +454,7 @@ require_once './Controllers/HomeController.php';
     </div>
         <div class="splash">
         <div class="splash_logo">
-            Hello <br> <?= $fname_user . ' ' . $lname_user ?>.
+            Hello <br> <?= $user_info["fname"] . ' ' . $user_info["lname"] ?>.
         </div>
         <div class="splash_svg">
             <svg width="100%" height="100%">
