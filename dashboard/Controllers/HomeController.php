@@ -12,13 +12,16 @@
             if($row){
                 $fetch_info = mysqli_fetch_assoc($row);
                 
-                $user_info = array("fname" => $fetch_info['fname'],
+                $user_info = array("id" => $fetch_info['id'],
+                                   "fname" => $fetch_info['fname'],
                                    "lname" => $fetch_info['lname'],
+                                   "role" => $fetch_info['role'],
                                    "full_name" =>  $fetch_info['fname'].' '.$fetch_info['lname'],
                                    "fname_letter" => ucfirst($fetch_info['fname'][0]),
                                    "lname_letter" => ucfirst($fetch_info['lname'][0]),
-                                    "phone_no" => $fetch_info['phone_no']);
+                                   "phone_no" => $fetch_info['phone_no']);
                 $full_name =$user_info['full_name'];
+                $user_id = $user_info['id'];
             }
         }
         else{

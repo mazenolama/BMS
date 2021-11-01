@@ -47,7 +47,6 @@ require_once('./Controllers/HomeController.php');
     <?php include_once('./views/helper/conditions.php') ?>
     <!-- JS scripts Specific Conditions -->
 
-
   </body>
 
 </html>

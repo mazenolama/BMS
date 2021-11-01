@@ -10,13 +10,15 @@
             <li class="dropdown active">
                 <a href="index.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
+            <?php if($user_info['role'] == 'Admin'): ?>
             <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-user-friends"></i><span>Users</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="index.php?page=Create-Users">Create Users</a></li>
+                    <li><a class="nav-link" href="index.php?page=Create-User">Create Users</a></li>
                     <li><a class="nav-link" href="index.php?page=View-Users">View Users</a></li>
                 </ul>
             </li>
+            <?php endif; ?>
             <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-user-friends"></i><span>Clients</span></a>
                 <ul class="dropdown-menu">

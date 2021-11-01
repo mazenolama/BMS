@@ -11,7 +11,6 @@
                 '<?= $user['role'];?>',
                 '<?= $user['curr_status'];?>',
                 '<?= time_elapsed_string($user['created_at'],true);?>',
-                '<?= $user['created_at'];?>',
                 '<?= time_elapsed_string($user['updated_at'],true);?>',
             ]);
     <?php 

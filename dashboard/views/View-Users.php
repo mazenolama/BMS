@@ -21,7 +21,6 @@
                                     <th>Role</th>
                                     <th>Status</th>
                                     <th>Since</th>
-                                    <th>Created Date</th>
                                     <th>Last Update</th>
                                     </tr>
                                 </thead>

@@ -18,6 +18,7 @@
 <script src="assets/bundles/datatables/export-tables/vfs_fonts.js"></script>
 <script src="assets/bundles/datatables/export-tables/buttons.print.min.js"></script>
 <script src="assets/bundles/select2/dist/js/select2.full.min.js"></script>
+<script src="assets/bundles/jquery-selectric/jquery.selectric.min.js"></script>
 
 <script src="assets/js/page/datatables.js"></script>
 

@@ -13,7 +13,7 @@
 
 .selectric {
   border: 1px solid #DDD;
-  border-radius: 0px;
+  border-radius: 6px;
   background: #F8F8F8;
   position: relative;
   overflow: hidden;
@@ -21,11 +21,13 @@
 
 .selectric .label {
   display: block;
+  padding: 3px 0px !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0 38px 0 10px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 38px;
   color: #444;
   height: 38px;

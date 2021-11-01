@@ -91,29 +91,36 @@ if(isset($_POST['signup'])){
             $fetch = mysqli_fetch_assoc($res);
 
             $fetch_pass = $fetch['password'];
+            $fetch_status = $fetch['curr_status'];
+            if($fetch_status== 'Active'){
+                if(password_verify($password, $fetch_pass)){
 
-            if(password_verify($password, $fetch_pass)){
+                    $_SESSION['email'] = $email;
+                    $status = $fetch['status'];
 
-                $_SESSION['email'] = $email;
-                $status = $fetch['status'];
+                    if($status == 'verified'){
 
-                if($status == 'verified'){
+                    $_SESSION['fname'] = $fetch['fname'];
+                    $_SESSION['name'] = $fetch['lname'];
+                    $_SESSION['phone_no'] = $fetch['phone_no'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    header('location: ./dashboard/');
 
-                  $_SESSION['fname'] = $fetch['fname'];
-                  $_SESSION['name'] = $fetch['lname'];
-                  $_SESSION['phone_no'] = $fetch['phone_no'];
-                  $_SESSION['email'] = $email;
-                  $_SESSION['password'] = $password;
-                  header('location: ./dashboard/');
-
-                }else{
-                    $info = "It's look like you haven't still verify your email - $email";
-                    $_SESSION['info'] = $info;
-                    header('location: index.php?page=verification');
+                    }else{
+                        $info = "It's look like you haven't still verify your email - $email";
+                        $_SESSION['info'] = $info;
+                        header('location: index.php?page=verification');
+                    }
                 }
-            }else{
-                $errors['email'] = "Incorrect password!";
+                else{
+                    $errors['email'] = "Incorrect password!";
+                }
             }
+            else{
+                $errors['status'] = "Your Account Is Deactivated Please Contact With Your Supervisor";
+            }
+
         }else{
             $errors['email'] = "It's look like you're not yet a member! Click on the bottom link to signup.";
         }
