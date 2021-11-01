@@ -9,11 +9,11 @@
 
        if($conn)
             return $conn;
-        else
-            {
-                die($conn);
-                echo 'Can Not Connect with database';
-            }
+	   else
+		{
+			die($conn);
+			return 'Can Not Connect with database';
+		}
           
     }
 
