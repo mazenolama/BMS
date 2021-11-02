@@ -16,7 +16,7 @@
                                                 <i class="far fa-edit"></i>
                                             </button>
                                         </a>
-                                        <a href="index.php?action=delete-client&c_id=<?=$_GET['c_id'];?>">
+                                        <a href="index.php?page=Client&action=delete-client&c_id=<?=$_GET['c_id'];?>">
                                             <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This Client">
                                                 <i class="fas fa-trash"></i>
                                             </button>

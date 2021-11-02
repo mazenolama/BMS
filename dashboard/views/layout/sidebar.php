@@ -14,7 +14,7 @@
             <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-user-friends"></i><span>Users</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="index.php?page=Create-User">Create Users</a></li>
+                    <li><a class="nav-link" href="index.php?page=Create-User">Create User</a></li>
                     <li><a class="nav-link" href="index.php?page=View-Users">View Users</a></li>
                 </ul>
             </li>

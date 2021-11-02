@@ -4,6 +4,7 @@
     $con =  dbConnection();
     $errors = array();
     unset ($_SESSION["password"]);
+
     /***************    Checking Vaild Authorization       ***************/
         $email = $_SESSION['email'];
         if(!empty($email)){
@@ -29,7 +30,7 @@
         }
     /***************    Checking Vaild Authorization       ***************/
 
-    /***************        Get Notifications              ***************/
+    /***************         Get Notifications             ***************/
         
         $query = "SELECT * FROM `notifications` WHERE status='unread'";
         $execute = mysqli_query($con, $query);
@@ -48,35 +49,35 @@
             $errors['notifications'] = 'Failed To Get Info. From Database';
         }
 
-    /***************        Get Notifications              ***************/
+    /***************         Get Notifications             ***************/
 
-    /***************         Logout        ***************/    
+    /***************                Logout                 ***************/    
         if(isset($_POST['logout'])){
             session_unset();
             session_destroy();
             header('Location: index.php');
         }
-    /***************         Logout         ***************/
+    /***************                Logout                 ***************/
 
-    /**************  Get Page Name Function ***************/
+    /**************         Get Page Name Function         ***************/
         function pageName(){
             if(isset($_GET['page']))
                 echo $_GET['page'];
             else
                 echo 'Dashboard' ;
         }
-    /**************  Get Page Name Function ***************/
+    /**************         Get Page Name Function         ***************/
 
-    /**************  Get Page Name Function ***************/
+    /**************         Mark As Read Function          ***************/
         if(array_key_exists('flush', $_POST)){
             $con =  dbConnection();
             $query ="UPDATE notifications SET status='read' WHERE status='unread'";
             mysqli_query($con, $query);
             die("<script>window.location = 'index.php'; window.reload();</script>");
         }
-    /**************  Get Page Name Function ***************/
+    /**************         Mark As Read Function          ***************/
 
-    /*************  Calculate Total Time Ago Function      ***************/
+    /*************      Calculate Total Time Ago Function  ***************/
         function time_elapsed_string($datetime, $full = false) {
             $now = new DateTime;
             $ago = new DateTime($datetime);
@@ -105,6 +106,6 @@
             if (!$full) $string = array_slice($string, 0, 1);
             return $string ? implode(', ', $string) . ' ago' : 'just now';
         }
-    /*************  Calculate Total Time Ago Function      ***************/
+    /*************      Calculate Total Time Ago Function  ***************/
 
 ?>

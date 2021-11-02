@@ -25,34 +25,34 @@
     /***************         Get All Clients               ***************/
 
     /***************        Create New Client              ***************/
-    if(isset($_POST['create-client']))
-    {
-        $fname_client = mysqli_real_escape_string($con,$_POST['fname']);
-        $lname_client = mysqli_real_escape_string($con,$_POST['lname']);
-        $companyName = mysqli_real_escape_string($con,$_POST['companyName']);
-        $companyURL = mysqli_real_escape_string($con,$_POST['companyURL']);
-        $email_client = mysqli_real_escape_string($con,$_POST['email']);
-        $phone_no_client = mysqli_real_escape_string($con,$_POST['phone_no']);
-        $address = mysqli_real_escape_string($con,$_POST['address']);
-        $notfiy = 'Has Created A New Client';
-        
-        if(!empty($fname_client) && !empty($lname_client) && !empty($email_client) && !empty($phone_no_client)){
-            $query = " INSERT INTO clients (fname, lname, companyName, companyURL, email, phone_no, address)
-                       VALUES ('$fname_client', '$lname_client', '$companyName', '$companyURL','$email_client','$phone_no_client',' $address');";
-            $query .="INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
+        if(isset($_POST['create-client']))
+        {
+            $fname_client = mysqli_real_escape_string($con,$_POST['fname']);
+            $lname_client = mysqli_real_escape_string($con,$_POST['lname']);
+            $companyName = mysqli_real_escape_string($con,$_POST['companyName']);
+            $companyURL = mysqli_real_escape_string($con,$_POST['companyURL']);
+            $email_client = mysqli_real_escape_string($con,$_POST['email']);
+            $phone_no_client = mysqli_real_escape_string($con,$_POST['phone_no']);
+            $address = mysqli_real_escape_string($con,$_POST['address']);
+            $notfiy = 'Has Created A New Client';
             
-            if(mysqli_multi_query($con, $query)){
-                $_SESSION['success'] = 'Created A New Client Successfully';
-                die("<script>window.location = 'index.php?page=View-Clients'; window.reload();</script>");
+            if(!empty($fname_client) && !empty($lname_client) && !empty($email_client) && !empty($phone_no_client)){
+                $query = " INSERT INTO clients (fname, lname, companyName, companyURL, email, phone_no, address)
+                        VALUES ('$fname_client', '$lname_client', '$companyName', '$companyURL','$email_client','$phone_no_client',' $address');";
+                $query .="INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
+                
+                if(mysqli_multi_query($con, $query)){
+                    $_SESSION['success'] = 'Created A New Client Successfully';
+                    die("<script>window.location = 'index.php?page=View-Clients'; window.reload();</script>");
+                }
+                else{
+                    $_SESSION['error'] = 'Failed To Create A New Client';
+                }
             }
             else{
-                $_SESSION['error'] = 'Failed To Create A New Client';
+                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
             }
         }
-        else{
-            $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
-        }
-    }
     /***************        Create New Client              ***************/
 
     /***************        Update Existing Client              ***************/
@@ -104,7 +104,7 @@
     /***************        Update Existing Client              ***************/
 
     /***************        Delete Client              ***************/
-        if(isset($_GET['action'])=='delete-client')
+        if(isset($_GET['action']) && $_GET['action'] =='delete-client')
         {
             $c_id= $_GET['c_id'];
             $notfiy = 'Has Deleted A Client';

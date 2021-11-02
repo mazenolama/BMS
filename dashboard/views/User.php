@@ -19,12 +19,13 @@
                                                 <i class="far fa-edit"></i>
                                             </button>
                                         </a>
-                                        <a href="index.php?action=delete-user&u_id=<?=$_GET['u_id'];?>">
+                                        <a href="index.php?page=User&action=delete-user&u_id=<?=$_GET['u_id'];?>">
                                             <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This User">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </a>
                                     </div>
+                                    
                                 <?php endif; ?>
 
                             </div>

@@ -1,6 +1,5 @@
 <?php
     require_once("database/Database.php");
-    require_once("Controllers/email/mail.php");
     $con = dbConnection();
     $errors = array();
 
@@ -23,38 +22,6 @@
         }
     /***************         Get All Users               ***************/
 
-    /***************         Create New User             ***************/
-        if(isset($_POST['create-user'])){
-            $fname_user = mysqli_real_escape_string($con,$_POST['fname']);
-            $lname_user = mysqli_real_escape_string($con,$_POST['lname']);
-            $email_user = mysqli_real_escape_string($con,$_POST['email']);
-            $phone_no_user = mysqli_real_escape_string($con,$_POST['phone_no']);
-            $role_user = mysqli_real_escape_string($con,$_POST['role']);
-            $curr_status_user = mysqli_real_escape_string($con,$_POST['curr_status']);
-            $password_user = mysqli_real_escape_string($con,$_POST['password']);
-            $notes_user = mysqli_real_escape_string($con,$_POST['notes']);
-            $password_user= password_hash($password_user, PASSWORD_ARGON2ID);
-
-            if(!empty($fname_user) && !empty($password_user) && !empty($email_user) && !empty($phone_no_user)){
-                $notfiy = 'Has Created Added A New User';
-                $query = " INSERT INTO users (fname, lname, email, phone_no, password, code, status, role, curr_status, notes)
-                VALUES ('$fname_user', '$lname_user', '$email_user', '$phone_no_user','$password_user','0','verified', '$role_user', '$curr_status_user', '$notes_user');";
-                $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
-
-                if(mysqli_multi_query($con, $query)){
-                    $_SESSION['success'] = 'Created A New User Successfully';
-                    email_new_user($fname_user,$lname_user,$email_user,$_POST['password'],$full_name);  
-                }
-                else{
-                    $_SESSION['error'] = 'Failed To Create A New User';
-                } 
-            }
-            else{
-                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
-            }
-        }
-    /***************         Create New User             ***************/
-    
     /***************        Update Existing User              ***************/
         if(isset($_GET['u_id'])){
 
@@ -126,9 +93,57 @@
     /***************        Update Existing User              ***************/
 
     /***************        Delete User              ***************/
-
-        
-        
+        if(isset($_GET['action']) && $_GET['action']== 'delete-user')
+        {
+            $u_id= $_GET['u_id'];
+            $notfiy = 'Has Deleted A Client';
+            $query = "DELETE FROM `users` WHERE id='$u_id';";
+            $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+            $execute = mysqli_multi_query($con, $query);
+            if($execute){
+                $_SESSION['success'] = 'Deleted A User Successfully';
+                flush();
+                sleep(2);
+                die("<script>window.location = 'index.php?page=View-Users';window.reload(); </script>");
+            }
+            else{
+                $_SESSION['error'] = 'Failed To Delete A User';
+            }
+        }
     /***************        Delete User              ***************/
+
+    /***************         Create New User             ***************/
+        if(isset($_POST['create-user'])){
+            $fname_user = mysqli_real_escape_string($con,$_POST['fname']);
+            $lname_user = mysqli_real_escape_string($con,$_POST['lname']);
+            $email_user = mysqli_real_escape_string($con,$_POST['email']);
+            $phone_no_user = mysqli_real_escape_string($con,$_POST['phone_no']);
+            $role_user = mysqli_real_escape_string($con,$_POST['role']);
+            $curr_status_user = mysqli_real_escape_string($con,$_POST['curr_status']);
+            $password_user = mysqli_real_escape_string($con,$_POST['password']);
+            $notes_user = mysqli_real_escape_string($con,$_POST['notes']);
+            $password_user= password_hash($password_user, PASSWORD_ARGON2ID);
+
+            if(!empty($fname_user) && !empty($password_user) && !empty($email_user) && !empty($phone_no_user)){
+                $notfiy = 'Has Created Added A New User';
+                $query = " INSERT INTO users (fname, lname, email, phone_no, password, code, status, role, curr_status, notes)
+                VALUES ('$fname_user', '$lname_user', '$email_user', '$phone_no_user','$password_user','0','verified', '$role_user', '$curr_status_user', '$notes_user');";
+                $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+
+                if(mysqli_multi_query($con, $query)){
+                    $_SESSION['success'] = 'Created A New User Successfully';
+                    email_new_user($fname_user,$lname_user,$email_user,$_POST['password'],$full_name);  
+                }
+                else{
+                    $_SESSION['error'] = 'Failed To Create A New User';
+                } 
+            }
+            else{
+                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
+            }
+        }
+    /***************         Create New User             ***************/
+    
+
     
 ?>
