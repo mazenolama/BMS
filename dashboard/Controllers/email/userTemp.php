@@ -46,7 +46,7 @@
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:22px;text-align:left;color:#555;">
 													Dear <strong>{USER_FIRST_NAME} {USER_LAST_NAME}</strong>,<br>
 													</br> 
-													We use <strong>Hadef Bills</strong> for to make our clients bills and we will love to invite you to join our <strong>Hadef Bills</strong> account. 
+													<p style="color: #000;">We use <strong>Hadef Bills</strong> for to make our clients bills and we will love to invite you to join our <strong>Hadef Bills</strong> account. </p>
 												</div>
 											</td>
 										</tr>
@@ -54,7 +54,7 @@
 										<tr>
 											<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;text-align:left;color:#525252;">
-												<strong>Your Credintionals:</strong>
+												<strong>Your Credentials:</strong>
 													<br><strong>Email: {EMAIL}</strong><br>
 													<strong>Password: {PASSWORD}</strong><br>                                        
 												</div>
