@@ -1,4 +1,5 @@
 <?php require_once './Controllers/UserController.php' ?>
+
 <div class="main-content">
     <section class="section">
         <div class="section-body">
@@ -10,18 +11,22 @@
                             <div class="card-header"  style="display: flex;justify-content: space-between;">
                                 <h4>User : #<?=$_GET['u_id']; ?></h4>
                                 
-                                <div style="text-align: right;">
-                                    <a href="index.php?page=Edit-User&u_id=<?=$_GET['u_id'];?>">
-                                        <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit This User">
-                                            <i class="far fa-edit"></i>
-                                        </button>
-                                    </a>
-                                    <a href="index.php?action=delete-User&u_id=<?=$_GET['u_id'];?>">
-                                        <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This User">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </a>
-                                </div>
+                                <?php if($user_info['role'] == 'Admin'): ?>
+
+                                    <div style="text-align: right;">
+                                        <a href="index.php?page=Edit-User&u_id=<?=$_GET['u_id'];?>">
+                                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit This User">
+                                                <i class="far fa-edit"></i>
+                                            </button>
+                                        </a>
+                                        <a href="index.php?action=delete-user&u_id=<?=$_GET['u_id'];?>">
+                                            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This User">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+
                             </div>
                             <?php 
                                 if(count($errors) > 0) { ?>

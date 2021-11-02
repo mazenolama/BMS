@@ -104,24 +104,21 @@
     /***************        Update Existing Client              ***************/
 
     /***************        Delete Client              ***************/
-     if( isset($_GET['c_id'])){
-        $c_id= $_GET['c_id'];
         if(isset($_GET['action'])=='delete-client')
         {
+            $c_id= $_GET['c_id'];
             $notfiy = 'Has Deleted A Client';
             $query = "DELETE FROM `clients` WHERE id='$c_id';";
-            $query .= "INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
+            $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A Client Successfully';
-               die("<script>window.location = 'index.php';</script>");
+                die("<script>window.location = 'index.php?page=View-Clients';window.reload(); </script>");
             }
             else{
                 $_SESSION['error'] = 'Failed To Delete A Client';
             }
         }
-  
-     }
     /***************        Delete Client              ***************/
 
 ?>

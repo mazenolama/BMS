@@ -1,4 +1,7 @@
-<?php require_once './Controllers/ClientController.php' ?>
+<?php 
+require_once './Controllers/ClientController.php';
+?>
+
 <div class="main-content">
     <section class="section">
         <div class="section-body">

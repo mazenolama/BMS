@@ -1,7 +1,28 @@
 <?php 
 require_once('./vendor/autoload.php');
 require_once('./Controllers/HomeController.php'); 
+
+if(isset($_GET['action'])=='delete-user')
+  {
+      if($_GET['u_id']){
+          $u_id= $_GET['u_id'];
+          $notfiy = 'Has Deleted A User';
+          $query = "DELETE FROM `users` WHERE id='$u_id';";
+          $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+          $execute = mysqli_multi_query($con, $query);
+          if($execute){
+              $_SESSION['success'] = 'Deleted A User Successfully';
+              die("<script>window.location = 'index.php?page=View-Users';</script>");
+          }
+          else{
+              $_SESSION['error'] = 'Failed To Delete A User';
+          }
+      }
+      else
+          $_SESSION['error'] = 'Failed To Get User ID';
+  }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
