@@ -16,11 +16,14 @@
                 $user_info = array("id" => $fetch_info['id'],
                                    "fname" => $fetch_info['fname'],
                                    "lname" => $fetch_info['lname'],
+                                   "email" => $fetch_info['email'],
+                                   "phone_no" => $fetch_info['phone_no'],
                                    "role" => $fetch_info['role'],
+                                   "curr_status" => $fetch_info['curr_status'],
+                                   "notes" => $fetch_info['notes'],
                                    "full_name" =>  $fetch_info['fname'].' '.$fetch_info['lname'],
                                    "fname_letter" => ucfirst($fetch_info['fname'][0]),
-                                   "lname_letter" => ucfirst($fetch_info['lname'][0]),
-                                   "phone_no" => $fetch_info['phone_no']);
+                                   "lname_letter" => ucfirst($fetch_info['lname'][0]));
                 $full_name =$user_info['full_name'];
                 $user_id = $user_info['id'];
             }
@@ -29,6 +32,55 @@
             header('Location: ../index.php');
         }
     /***************    Checking Vaild Authorization       ***************/
+
+    /***************         Update Employee Profile       ***************/
+
+        if(isset($_POST['update-profile'])){
+
+            $datetime = date_create()->format('Y-m-d H:i:s');
+            $notfiy = 'Has Updated An Existing User';
+
+            $fname_user = mysqli_real_escape_string($con,$_POST['fname']);
+            $lname_user = mysqli_real_escape_string($con,$_POST['lname']);
+            $email_user = mysqli_real_escape_string($con,$_POST['email']);
+            $phone_no_user = mysqli_real_escape_string($con,$_POST['phone_no']);
+            $role_user = mysqli_real_escape_string($con,$_POST['role']);
+            $curr_status_user = mysqli_real_escape_string($con,$_POST['curr_status']);
+            $password_user = mysqli_real_escape_string($con,$_POST['password']);
+                                    
+            if(!empty($fname_user) && !empty($email_user) && !empty($phone_no_user)){
+                
+                if(!empty($password_user)){
+                    $password_user= password_hash($password_user, PASSWORD_ARGON2ID);
+
+                    $query  = "UPDATE users SET fname='$fname_user',lname='$lname_user',
+                                email='$email_user',phone_no='$phone_no_user',notes='$notes_user',
+                                role='$role_user', curr_status='$curr_status_user', password='$password_user',
+                                updated_at='$datetime' WHERE id='$user_id';";
+                }
+                else{
+                    $query  = "UPDATE users SET fname='$fname_user',lname='$lname_user',
+                                email='$email_user',phone_no='$phone_no_user',notes='$notes_user',
+                                role='$role_user', curr_status='$curr_status_user',updated_at='$datetime' 
+                                WHERE id='$user_id';";
+                }
+
+                if(mysqli_query($con, $query)){
+                    $_SESSION['success'] = 'Updated An Existing User Successfully';
+                    die("<script>window.location = 'index.php?page=Profile'; window.reload();</script>");
+                }
+                else{
+                    $_SESSION['error'] = 'Failed To Updated An Existing User';
+                }
+                
+            }
+            else{
+                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
+            }
+        }
+        
+        
+    /***************         Update Employee Profile       ***************/
 
     /***************         Get Notifications             ***************/
         

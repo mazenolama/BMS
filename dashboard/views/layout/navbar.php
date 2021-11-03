@@ -17,7 +17,7 @@
         class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <figure class="avatar mr-2 avatar-sm bg-success text-white" style="font-size: 15px;height: 40px;width: 40px;" data-initial="<?=$user_info["fname_letter"] . $user_info["lname_letter"] ?>"></figure> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">
         <div class="dropdown-title">Hello <?=$user_info["fname"] ?></div>
-        <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+        <a href="index.php?page=Profile" class="dropdown-item has-icon"> <i class="far
                 fa-user"></i> Profile
         </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
             Activities

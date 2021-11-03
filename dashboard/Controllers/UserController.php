@@ -23,7 +23,7 @@
         }
     /***************         Get All Users               ***************/
 
-    /***************        Update Existing User              ***************/
+    /***************        Update Existing User         ***************/
         if(isset($_GET['u_id'])){
 
             $u_id= $_GET['u_id'];
@@ -91,9 +91,9 @@
                 $errors['get_user'] = 'Failed To Get Info. From Database';
             }
         }
-    /***************        Update Existing User              ***************/
+    /***************        Update Existing User         ***************/
 
-    /***************        Delete User              ***************/
+    /***************            Delete User              ***************/
         if(isset($_GET['action']) && $_GET['action']== 'delete-user')
         {
             $u_id= $_GET['u_id'];
@@ -103,15 +103,13 @@
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A User Successfully';
-                flush();
-                sleep(2);
                 die("<script>window.location = 'index.php?page=View-Users';window.reload(); </script>");
             }
             else{
                 $_SESSION['error'] = 'Failed To Delete A User';
             }
         }
-    /***************        Delete User              ***************/
+    /***************            Delete User              ***************/
 
     /***************         Create New User             ***************/
         if(isset($_POST['create-user'])){
