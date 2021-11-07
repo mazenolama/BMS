@@ -26,6 +26,17 @@
     /***************         Get All Clients               ***************/
 
     /***************        Create New Invoice             ***************/
+    if(isset($_POST['create-invoice'])){
 
+        $amount =  $_POST['amount'];
+        $tax = $_POST['tax'];
+        $discount = $_POST['discount'];
+        $total =  $_POST['total'];
+        var_dump($amount);
+        var_dump($tax);
+        var_dump($discount);
+        var_dump($total);
+
+    }
     /***************        Create New Invoice             ***************/
 ?>

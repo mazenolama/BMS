@@ -64,9 +64,9 @@
                         <fieldset>
                             <div class="form-group row">
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Amount*</label>
+                                    <label class="label-title">Amount*:</label>
                                     <div class="input-group">
-                                        <input type="number" name="amount" class="form-control" required>
+                                        <input type="number" id="amount" value="0.00" class="form-control" required>
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-dollar-sign"></i>
@@ -76,9 +76,9 @@
                                 </div>
                                 
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Tax</label>
+                                    <label class="label-title">Tax Rate:</label>
                                     <div class="input-group">
-                                        <input type="number" name="tax" class="form-control">
+                                        <input type="number" id="tax" value="0.00" class="form-control">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-percent"></i>
@@ -90,9 +90,9 @@
 
                             <div class="form-group row">
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Discount</label>
+                                    <label class="label-title">Discount Rate:</label>
                                     <div class="input-group">
-                                        <input type="number" name="discount" class="form-control">
+                                        <input type="number" id="discount" value="0.00" class="form-control">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-percent"></i>
@@ -103,28 +103,29 @@
 
                                 <div class="form-group col-md-6">
                                     <label class="label-title">Select Invoice Status*</label>
-                                    <select class="form-control select2" name="invoice_status" required>
+                                    <select class="form-control select2" name="invoice_status" id="invoice_status" required>
+                                        <option disabled selected>Select Status</option>
                                         <?php foreach($invoice_status as $status): ?>
                                             <option value="<?= $status?>" ><?=$status?></option>
                                         <?php endforeach?>
                                     </select>
                                 </div>
                             </div>
-                            <div id="calcInvoice">
+                            <div id="calcInvoice" style="display:none;">
                                 <div class="row">
                                     <div class="form-group col-md-6" style="margin-bottom: -1rem;">
-                                        <label class="label-invoice">Tax: <label id="Sub-Total">100$</label></label>
+                                        <label class="label-invoice">Tax: <label id="label-tax">0 </label> SAR</label>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label-invoice">Discount: <label id="Sub-Total">20$</label></label>
+                                        <label class="label-invoice">Discount: <label id="label-discount">0 </label> SAR</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label class="label-invoice">Sub-Total: <label id="Sub-Total">50$</label></label>
+                                        <label class="label-invoice">Sub-Total: <label id="label-subTotal">0 </label> SAR</label>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label-invoice">Total: <label id="Sub-Total">100$</label></label>
+                                        <label class="label-invoice">Total: <label id="label-total">0 </label> SAR</label>
                                     </div>
                                 </div> 
                             </div>
@@ -135,10 +136,16 @@
                                 </div>
                             </div>
                         </fieldset>
+                        
+                        <input name="amount" hidden>
+                        <input name="tax" hidden>
+                        <input name="discount" hidden>
+                        <input name="total" hidden>
+
                         <div class="card-footer text-right">
                             <button class="btn btn-danger" type="submit" name="discard">Discard</button>
-                            <button class="btn btn-info" type="submit" name="save">Save</button>
-                            <button class="btn btn-success" type="submit" name="save-&-send">Save & Send</button>
+                            <button class="btn btn-info" type="submit" name="create-invoice">Create</button>
+                            <button class="btn btn-success" type="submit" name="create-&-send-invoice">Create & Send</button>
                         </div>
                     </form>
                   </div>
