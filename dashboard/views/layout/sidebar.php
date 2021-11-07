@@ -2,7 +2,7 @@
     <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
         <a href="index.php"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span
-            class="logo-name">Hadef IT</span>
+            class="logo-name">Hadef Bills</span>
         </a>
     </div>
     <ul class="sidebar-menu">

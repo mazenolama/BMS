@@ -41,9 +41,21 @@
                                         <div class="invalid-feedback">Email Format is invalid.</div>
                                     </div>
                                    
+ 
                                     <div class="form-group col-md-6">
-                                        <label class="label-title">Passowrd</label>                                        
-                                        <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" tabindex="2" required="">                                        
+                                        <label class="label-title">User Passowrd</label> 
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-lock"></i>
+                                            </div>
+                                            </div>
+                                            <input type="password" class="form-control pwstrength" name="password" required="" data-indicator="pwindicator">
+                                        </div>
+                                        <div id="pwindicator" class="pwindicator">
+                                            <div class="bar"></div>
+                                            <div class="label"></div>
+                                        </div>
                                         <div class="valid-feedback"></div>
                                         <div class="invalid-feedback"> Please Write User Password !!</div>
                                     </div>

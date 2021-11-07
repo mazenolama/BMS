@@ -62,9 +62,10 @@ $(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            alert("Good job!", "Submitted!", "success");
+           alert("good job!")
         }
     });
+
 
     form.validate({
         highlight: function (input) {

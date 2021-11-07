@@ -3,6 +3,7 @@
     require_once("database/Database.php");
     $con = dbConnection();
     $errors = array();
+    $invoice_status = array("Unpaid","Paid","Part-Paid");
 
     /***************         Get All Clients               ***************/
         $query = "SELECT * FROM `clients` WHERE 1 ORDER BY created_at DESC";
@@ -23,4 +24,8 @@
         }
 
     /***************         Get All Clients               ***************/
+
+    /***************        Create New Invoice             ***************/
+
+    /***************        Create New Invoice             ***************/
 ?>

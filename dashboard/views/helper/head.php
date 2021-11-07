@@ -9,10 +9,9 @@
 <link rel="stylesheet" href="assets/bundles/izitoast/css/iziToast.min.css">
 <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css">
 <link rel="stylesheet" href="assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
-
+<link rel="stylesheet" href="assets/bundles/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
 <link rel="stylesheet" href="assets/bundles/jquery-selectric/selectric.css">
-
 
 <!-- Custom style CSS -->
 <link rel="stylesheet" href="assets/css/custom.css">
