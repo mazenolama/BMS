@@ -10,18 +10,6 @@
                             <div class="card-header">
                                 <h4>Update User</h4>
                             </div>
-                            <?php 
-                                if(count($errors) > 0) { ?>
-                                    <div class="alert alert-danger text-center">
-                                        <?php
-                                        foreach($errors as $showerror){
-                                            echo $showerror;
-                                        }
-                                        ?>
-                                    </div>
-                                <?php
-                                }
-                            ?>
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="form-group col-md-6">
