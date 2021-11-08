@@ -5,21 +5,24 @@
     $errors = array();
 
     /***************         Get All Users               ***************/
-        $query = "SELECT * FROM `users` WHERE 1 ORDER BY created_at DESC";
-        $execute = mysqli_query($con, $query);
-        $fetch_users = array();
-        if($execute){
-            if(mysqli_num_rows($execute) > 0){
-                while($fetch = $execute->fetch_assoc()) {
-                    $fetch_users [] = $fetch;
+        if(isset($_GET['page']) && $_GET['page'] =='View-Users'){
+
+            $query = "SELECT * FROM `users` WHERE 1 ORDER BY created_at DESC";
+            $execute = mysqli_query($con, $query);
+            $fetch_users = array();
+            if($execute){
+                if(mysqli_num_rows($execute) > 0){
+                    while($fetch = $execute->fetch_assoc()) {
+                        $fetch_users [] = $fetch;
+                    }
+                }
+                else{
+                    $errors['get_users'] = 'No Data To Show';
                 }
             }
             else{
-                $errors['get_users'] = 'No Data To Show';
+                $errors['get_users'] = 'Failed To Get Info. From Database';
             }
-        }
-        else{
-            $errors['get_users'] = 'Failed To Get Info. From Database';
         }
     /***************         Get All Users               ***************/
 
@@ -124,7 +127,7 @@
             $password_user= password_hash($password_user, PASSWORD_ARGON2ID);
 
             if(!empty($fname_user) && !empty($password_user) && !empty($email_user) && !empty($phone_no_user)){
-                $notfiy = 'Has Created Added A New User';
+                $notfiy = 'Has Created A New User';
                 $query = " INSERT INTO users (fname, lname, email, phone_no, password, code, status, role, curr_status, notes)
                 VALUES ('$fname_user', '$lname_user', '$email_user', '$phone_no_user','$password_user','0','verified', '$role_user', '$curr_status_user', '$notes_user');";
                 $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";

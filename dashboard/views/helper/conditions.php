@@ -15,6 +15,13 @@
     ?>
     <!----------------- Users DataTable   ----------------->
 
+    <!-----------------  Invoices DataTable   ----------------->
+    <?php 
+      if(isset($_GET['page']) && $_GET['page']=='View-Invoices' )
+        include_once('views/invoices/invoices-table.php'); 
+    ?>
+    <!----------------- Invoices DataTable   ----------------->
+
     <script>
       /****************   Tostar Alert Success    *****************/
         <?php if (isset($_SESSION['success'])): ?>

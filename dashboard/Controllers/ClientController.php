@@ -5,21 +5,23 @@
     $errors = array();
     
     /***************         Get All Clients               ***************/
-        $query = "SELECT * FROM `clients` WHERE 1 ORDER BY created_at DESC";
-        $execute = mysqli_query($con, $query);
-        $fetch_clients = array();
-        if($execute){
-            if(mysqli_num_rows($execute) > 0){
-                while($fetch = $execute->fetch_assoc()) {
-                   $fetch_clients [] = $fetch;
+        if(isset($_GET['page']) && $_GET['page'] =='View-Clients' || !isset($_GET['page'])){
+            $query = "SELECT * FROM `clients` WHERE 1 ORDER BY created_at DESC";
+            $execute = mysqli_query($con, $query);
+            $fetch_clients = array();
+            if($execute){
+                if(mysqli_num_rows($execute) > 0){
+                    while($fetch = $execute->fetch_assoc()) {
+                    $fetch_clients [] = $fetch;
+                    }
+                }
+                else{
+                    $errors['get_clients'] = 'No Data To Show';
                 }
             }
             else{
-                $errors['get_clients'] = 'No Data To Show';
+                $errors['get_clients'] = 'Failed To Get Info. From Database';
             }
-        }
-        else{
-            $errors['get_clients'] = 'Failed To Get Info. From Database';
         }
 
     /***************         Get All Clients               ***************/

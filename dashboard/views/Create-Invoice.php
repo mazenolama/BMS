@@ -9,19 +9,19 @@
                     <h4>Create New Invoice</h4>
                   </div>
                   <div class="card-body">
-                    <form  action="index.php?page=Create-Invoice" method="POST">
+                    <form action="index.php?page=Create-Invoice" method="POST">
                       
                         <div class="divider">Invoice Information</div>
                         <fieldset>
                             <div class="form-group row">
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Invoice Title*</label>
+                                    <label class="label-title">Invoice Title<span class="red">*</span></label>
                                     <input type="text" class="form-control" name="title" required>
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Select Client*</label>
-                                    <select class="form-control select2" name="client_name">
+                                    <label class="label-title">Select Client<span class="red">*</span></label>
+                                    <select class="form-control select2" name="client_id">
                                         <?php if(count($fetch_clients) > 0): ?>
                                              <?php foreach($fetch_clients as $fetch): ?>
                                                 <option value="<?= $fetch['id']?>" ><?=$fetch['fname'].' '. $fetch['lname'] ?></option>
@@ -33,9 +33,9 @@
                             <div class="form-group row">
                                 
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Created Date*</label>
+                                    <label class="label-title">Created Date<span class="red">*</span></label>
                                     <div class="input-group">
-                                    <input type="text" class="form-control datepicker" required>
+                                    <input type="text" class="form-control datepicker" name="created_date">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-calendar"></i>
@@ -47,7 +47,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="label-title">Payment Date*</label>
                                     <div class="input-group">
-                                    <input type="text" class="form-control datepicker" required>
+                                    <input type="text" class="form-control datepicker" name="payment_date">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-calendar"></i>
@@ -64,9 +64,9 @@
                         <fieldset>
                             <div class="form-group row">
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Amount*:</label>
+                                    <label class="label-title">Amount<span class="red">*</span>:</label>
                                     <div class="input-group">
-                                        <input type="number" id="amount" value="0.00" class="form-control" required>
+                                        <input id="amount" value="0" class="form-control">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-dollar-sign"></i>
@@ -78,7 +78,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="label-title">Tax Rate:</label>
                                     <div class="input-group">
-                                        <input type="number" id="tax" value="0.00" class="form-control">
+                                        <input value="0" id="tax" class="form-control">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-percent"></i>
@@ -92,7 +92,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="label-title">Discount Rate:</label>
                                     <div class="input-group">
-                                        <input type="number" id="discount" value="0.00" class="form-control">
+                                        <input id="discount" value="0" class="form-control">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-percent"></i>
@@ -102,8 +102,8 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label class="label-title">Select Invoice Status*</label>
-                                    <select class="form-control select2" name="invoice_status" id="invoice_status" required>
+                                    <label class="label-title">Select Invoice Status<span class="red">*</span></label>
+                                    <select class="form-control select2" name="picked_status" required>
                                         <option disabled selected>Select Status</option>
                                         <?php foreach($invoice_status as $status): ?>
                                             <option value="<?= $status?>" ><?=$status?></option>
@@ -137,10 +137,10 @@
                             </div>
                         </fieldset>
                         
-                        <input name="amount" hidden>
-                        <input name="tax" hidden>
-                        <input name="discount" hidden>
-                        <input name="total" hidden>
+                        <input type="text" name="amount" id="amount" style="opacity: 0;" />
+                        <input type="text" name="tax" class="tax" style="opacity: 0;" />
+                        <input type="text" name="discount" style="opacity: 0;" />
+                        <input type="text" name="total" style="opacity: 0;" />
 
                         <div class="card-footer text-right">
                             <button class="btn btn-danger" type="submit" name="discard">Discard</button>
