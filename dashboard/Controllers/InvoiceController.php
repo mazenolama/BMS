@@ -31,7 +31,9 @@
             $title = mysqli_real_escape_string($con,$_POST['title']);
             $amount = mysqli_real_escape_string($con,$_POST['amount']);
             $tax = mysqli_real_escape_string($con,$_POST['tax']);
+            $tax_prg = mysqli_real_escape_string($con,$_POST['tax_prg']);
             $discount = mysqli_real_escape_string($con,$_POST['discount']);
+            $discount_prg = mysqli_real_escape_string($con,$_POST['discount_prg']);
             $total = mysqli_real_escape_string($con,$_POST['total']);
             $invoice_status = mysqli_real_escape_string($con,$_POST['picked_status']);
             $created_date = mysqli_real_escape_string($con,$_POST['created_date']);
@@ -42,8 +44,8 @@
 
             if(!empty($title) && !empty($amount) && !empty($total)){
 
-                $query = " INSERT INTO invoices (title, amount, tax, discount, total, invoice_status, created_date, payment_date, note, clientID)
-                VALUES ('$title', '$amount', '$tax', '$discount','$total','$invoice_status','$created_date', '$payment_date', '$note', '$clientID');";
+                $query = " INSERT INTO invoices (title, amount, tax, tax_prg, discount, discount_prg, total, invoice_status, created_date, payment_date, note, clientID)
+                VALUES ('$title', '$amount', '$tax','$tax_prg', '$discount','$discount_prg','$total','$invoice_status','$created_date', '$payment_date', '$note', '$clientID');";
                 $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
 
                 if(mysqli_multi_query($con, $query)){
@@ -113,26 +115,35 @@
 
     /***************           Update Invoice              ***************/
         if(isset($_POST['update-invoice'])){
-            $fname_client = mysqli_real_escape_string($con,$_POST['fname']);
-            $lname_client = mysqli_real_escape_string($con,$_POST['lname']);
-            $companyName = mysqli_real_escape_string($con,$_POST['companyName']);
-            $companyURL = mysqli_real_escape_string($con,$_POST['companyURL']);
-            $email_client = mysqli_real_escape_string($con,$_POST['email']);
-            $phone_no_client = mysqli_real_escape_string($con,$_POST['phone_no']);
-            $address = mysqli_real_escape_string($con,$_POST['address']);
-            $notfiy = 'Has Updated An Existing Client';
+
+            $i_id= $_GET['i_id'];
+            $title = mysqli_real_escape_string($con,$_POST['title']);
+            $amount = mysqli_real_escape_string($con,$_POST['amount']);
+            $tax = mysqli_real_escape_string($con,$_POST['tax']);
+            $tax_prg = mysqli_real_escape_string($con,$_POST['tax_prg']);
+            $discount = mysqli_real_escape_string($con,$_POST['discount']);
+            $discount_prg = mysqli_real_escape_string($con,$_POST['discount_prg']);
+            $total = mysqli_real_escape_string($con,$_POST['total']);
+            $invoice_status = mysqli_real_escape_string($con,$_POST['picked_status']);
+            $created_date = mysqli_real_escape_string($con,$_POST['created_date']);
+            $payment_date = mysqli_real_escape_string($con,$_POST['payment_date']);
+            $note = mysqli_real_escape_string($con,$_POST['notes']);            
+            $notfiy = 'Has Updated An Existing Invoice';
             
-            if(!empty($fname_client) && !empty($lname_client) && !empty($email_client) && !empty($phone_no_client)){
+            if(!empty($title) && !empty($total) && !empty($amount)){
+
                 $datetime = date_create()->format('Y-m-d H:i:s');
-                $query  = " UPDATE clients SET fname='$fname_client',lname='$lname_client',companyName='$companyName',companyURL='$companyURL',email='$email_client',phone_no='$phone_no_client',address='$address',updated_at='$datetime' WHERE id='$c_id';";
+
+                $query  = " UPDATE invoices SET title='$title',amount='$amount',tax='$tax',tax_prg='$tax_prg',discount='$discount',discount_prg='$discount_prg',total='$total',invoice_status='$invoice_status',created_date='$created_date',payment_date='$payment_date',note='$note', updated_at='$datetime' WHERE id='$i_id';";
+                
                 $query .= "INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
                 
                 if(mysqli_multi_query($con, $query)){
-                    $_SESSION['success'] = 'Updated An Existing Client Successfully';
-                    die("<script>window.location = 'index.php?page=View-Clients'; window.reload();</script>");
+                    $_SESSION['success'] = 'Updated An Existing Invoice Successfully';
+                    die("<script>window.location = 'index.php?page=View-Invoices'; window.reload();</script>");
                 }
                 else{
-                    $_SESSION['error'] = 'Failed To Updated An Existing Client';
+                    $_SESSION['error'] = 'Failed To Updated An Existing Invoice';
                 }
             }
             else{

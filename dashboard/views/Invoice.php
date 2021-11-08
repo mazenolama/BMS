@@ -53,11 +53,11 @@
 
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Tax:</label>
-                                        <label class="label-info"><?= $fetch_invoice['tax'];?></label> 
+                                        <label class="label-info"><?= $fetch_invoice['tax'];?> (<?=$fetch_invoice['tax_prg']; ?>%)</label> 
                                     </div>  
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Discount:</label>
-                                        <label class="label-info"><?= $fetch_invoice['discount'];?></label>
+                                        <label class="label-info"><?= $fetch_invoice['discount'];?> (<?= $fetch_invoice['discount_prg'];?>%)</label>
                                     </div>
 
                                 </div>

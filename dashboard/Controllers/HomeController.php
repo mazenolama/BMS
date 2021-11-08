@@ -159,5 +159,7 @@
             return $string ? implode(', ', $string) . ' ago' : 'just now';
         }
     /*************      Calculate Total Time Ago Function  ***************/
+    if(isset($_POST['discard']))
+        die("<script>window.location = '../dashboard';</script>");
 
 ?>

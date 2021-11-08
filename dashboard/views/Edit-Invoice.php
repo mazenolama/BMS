@@ -75,7 +75,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="label-title">Tax Rate:</label>
                                             <div class="input-group">
-                                                <input id="tax" class="form-control" value="<?=$fetch_invoice['tax'];?>">
+                                                <input id="tax" class="form-control" value="<?=$fetch_invoice['tax_prg'];?>" name="tax_prg">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
                                                         <i class="fas fa-percent"></i>
@@ -89,7 +89,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="label-title">Discount Rate:</label>
                                             <div class="input-group">
-                                                <input id="discount" class="form-control" value="<?=$fetch_invoice['discount'];?>">
+                                                <input id="discount" class="form-control" value="<?=$fetch_invoice['discount_prg'];?>" name="discount_prg">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
                                                         <i class="fas fa-percent"></i>
@@ -140,8 +140,8 @@
 
                                 <div class="card-footer text-right">
                                     <button class="btn btn-danger" type="submit" name="discard">Discard</button>
-                                    <button class="btn btn-info" type="submit" name="create-invoice">Create</button>
-                                    <button class="btn btn-success" type="submit" name="create-&-send-invoice">Create & Send</button>
+                                    <button class="btn btn-info" type="submit" name="update-invoice">Update</button>
+                                    <button class="btn btn-success" type="submit" name="update-&-send-invoice">Update & Send</button>
                                 </div>
                             </form>
                         </div>

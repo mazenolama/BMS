@@ -78,7 +78,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="label-title">Tax Rate:</label>
                                     <div class="input-group">
-                                        <input value="0" id="tax" class="form-control">
+                                        <input value="0" id="tax" class="form-control" name="tax_prg">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-percent"></i>
@@ -92,7 +92,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="label-title">Discount Rate:</label>
                                     <div class="input-group">
-                                        <input id="discount" value="0" class="form-control">
+                                        <input id="discount" value="0" class="form-control" name="discount_prg">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
                                                 <i class="fas fa-percent"></i>
