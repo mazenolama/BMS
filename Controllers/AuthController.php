@@ -9,7 +9,7 @@ $errors = array();
 
 $path = basename($_SERVER['REQUEST_URI']);
 
-
+var_dump($path);
 //if user signup button
 if(isset($_POST['signup'])){
     $fname = mysqli_real_escape_string($con, $_POST['fname']);
