@@ -5,7 +5,7 @@
     $errors = array();
     
     /***************         Get All Clients               ***************/
-        if(isset($_GET['page']) && $_GET['page'] =='View-Clients' || !isset($_GET['page'])){
+        if(isset($_GET['page']) && $_GET['page'] =='View-Clients' || $_SERVER['SCRIPT_NAME'] =='index.php'){
             $query = "SELECT * FROM `clients` WHERE 1 ORDER BY created_at DESC";
             $execute = mysqli_query($con, $query);
             $fetch_clients = array();
