@@ -6,6 +6,8 @@
     unset ($_SESSION["password"]);
     error_reporting(E_ALL); 
     ini_set('display_errors', 1);
+    $parts = explode('/', $_SERVER["SCRIPT_NAME"]);
+    $file = $parts[count($parts) - 1];
 
     /***************    Checking Vaild Authorization       ***************/
         $email = $_SESSION['email'];

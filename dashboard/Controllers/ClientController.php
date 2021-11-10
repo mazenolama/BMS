@@ -3,9 +3,6 @@
     require_once("database/Database.php");
     $con = dbConnection();
     $errors = array();
-
-    $parts = explode('/', $_SERVER["SCRIPT_NAME"]);
-    $file = $parts[count($parts) - 1];
     
     /***************         Get All Clients               ***************/
         if(isset($_GET['page']) && $_GET['page'] =='View-Clients' ||  $file =='index.php'){
