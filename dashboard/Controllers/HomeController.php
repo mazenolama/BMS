@@ -4,6 +4,8 @@
     $con =  dbConnection();
     $errors = array();
     unset ($_SESSION["password"]);
+    error_reporting(E_ALL); 
+    ini_set('display_errors', 1);
 
     /***************    Checking Vaild Authorization       ***************/
         $email = $_SESSION['email'];
