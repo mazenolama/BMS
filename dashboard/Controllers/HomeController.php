@@ -29,7 +29,7 @@
             }
         }
         else{
-            header('Location: ../index.php');
+            header('Location: https://bills.hadefit.com');
         }
     /***************    Checking Vaild Authorization       ***************/
 
