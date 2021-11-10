@@ -7,7 +7,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- Google sign in -->
 
-<title>Hadef IT Admin</title>
+<title>Hadef Bills</title>
     <!-- General CSS Files -->
 <link rel="stylesheet" href="assets/css/app.min.css">
 <!-- Template CSS -->

@@ -12,7 +12,7 @@ require_once('./Controllers/AuthController.php');
     <body>
         <div class="loader"></div>
         <!---------------- Main Content ----------------->
-            <div class="app">
+            <div class="app bg_one" >
                 <?php 
                     if(isset($_GET['page']))
                         include('./pages/'.$_GET['page'] . '.php');

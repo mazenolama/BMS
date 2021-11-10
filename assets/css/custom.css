@@ -27,3 +27,14 @@ input[type=number] {
   outline: 0;
   box-shadow: none
 }
+.bg_one {
+  display: block;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: url(https://css.zohostatic.in/iam/M_4496170/v2/components/images/bg.svg) transparent;
+  background-size: auto 100%;
+  z-index: -1;
+}

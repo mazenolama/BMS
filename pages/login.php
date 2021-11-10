@@ -4,8 +4,11 @@
         <div class="row">
             <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
                 <div class="card card-primary">
-                <div class="card-header">
-                    <h4>Login</h4>
+                <div class="card-header" style="display: block;">
+                    <div class="text-center mt-3">
+                        <img src="assets/img/bills.png" height="100" width="100"  alt="...">
+                        <h3 style="font-family: cursive;font-size: 2.1rem;color: #121212eb;">Hadef Bills</h3>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="index.php" autocomplete="" class="needs-validation" novalidate="">
@@ -66,12 +69,13 @@
                     <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
 
                     <div class="mt-5 text-muted text-center">
-                        Don't have an account? 
-                        <a href="index.php?page=signup">Create One</a>
+                        Don't have a Hadef Bills account?
+                        <a href="index.php?page=signup">Sign Up Now</a>
                     </div>
                 </div>
                
             </div>
+            
         </div>
     </div>
 </section>
