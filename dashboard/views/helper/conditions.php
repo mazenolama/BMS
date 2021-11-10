@@ -1,20 +1,20 @@
     <!-----------------  Clients DataTable   ----------------->
     <?php 
-      if(isset($_GET['page']) && $_GET['page'] == 'View-Clients' ||  $file =='index.php')
+      if($path == 'Clients' ||  $path == 'Dashboard')
         include_once('views/clients/clients-table.php');
     ?>
     <!----------------- Clients DataTable   ----------------->
 
     <!-----------------  Users DataTable   ----------------->
     <?php 
-      if(isset($_GET['page']) && $_GET['page']=='View-Users' )
+      if($path =='Users' )
         include_once('views/users/users-table.php'); 
     ?>
     <!----------------- Users DataTable   ----------------->
 
     <!-----------------  Invoices DataTable   ----------------->
     <?php 
-      if(isset($_GET['page']) && $_GET['page']=='View-Invoices' )
+      if($path =='Invoices' )
         include_once('views/invoices/invoices-table.php'); 
     ?>
     <!----------------- Invoices DataTable   ----------------->

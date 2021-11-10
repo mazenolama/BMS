@@ -5,7 +5,7 @@
     $errors = array();
 
     /***************         Get All Users               ***************/
-        if(isset($_GET['page']) && $_GET['page'] =='View-Users'){
+        if( $path =='Users'){
 
             $query = "SELECT * FROM `users` WHERE 1 ORDER BY created_at DESC";
             $execute = mysqli_query($con, $query);
@@ -74,7 +74,7 @@
                             
                             if(mysqli_multi_query($con, $query)){
                                 $_SESSION['success'] = 'Updated An Existing User Successfully';
-                                die("<script>window.location = 'index.php?page=View-Users'; window.reload();</script>");
+                                die("<script>window.location = 'User?i_id=$i_id'; window.reload();</script>");
                             }
                             else{
                                 $_SESSION['error'] = 'Failed To Updated An Existing User';
@@ -106,7 +106,7 @@
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A User Successfully';
-                die("<script>window.location = 'index.php?page=View-Users';window.reload(); </script>");
+                die("<script>window.location = 'Users';window.reload(); </script>");
             }
             else{
                 $_SESSION['error'] = 'Failed To Delete A User';

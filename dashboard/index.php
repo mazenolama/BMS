@@ -25,15 +25,7 @@ require_once('./Controllers/HomeController.php');
         <!-- Sidebar -->
 
         <!-- Main Content -->
-        <?php 
-          if(isset($_GET['page']))
-              include ('./views/'.$_GET['page'] . '.php');
-          else
-          {
-            $_GET['page'] ='Dashboard';
-            include ('./views/'.$_GET['page'] . '.php');
-          }
-        ?>
+        <?php include ('./views/'.$path . '.php');?>
         <!-- Main Content -->
 
         <!-- Footer -->

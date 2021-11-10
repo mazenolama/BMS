@@ -38,7 +38,7 @@
       if(mail($email_user, $subject, $message, $userHeaders))
       {
           $_SESSION['success'] = 'Sent An Email To New User Successfully';
-          die("<script>window.location = 'index.php?page=View-Users'; window.reload();</script>");
+          die("<script>window.location = 'Users'; window.reload();</script>");
       }
       else{
           $_SESSION['error']='Created User But Failed while sending Email!';

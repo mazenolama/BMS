@@ -10,7 +10,7 @@
                             <h4>Update Invoice</h4>
                         </div>
                         <div class="card-body">
-                            <form class="needs-validation" method="POST" autocomplete="off" action="index.php?page=Edit-Invoice&i_id=<?= $_GET['i_id'];?>" novalidate="">
+                            <form class="needs-validation" method="POST" autocomplete="off" action="Edit-Invoice?i_id=<?= $_GET['i_id'];?>" novalidate="">
                                 
                                 <div class="divider">Invoice Information</div>
                                 <fieldset>

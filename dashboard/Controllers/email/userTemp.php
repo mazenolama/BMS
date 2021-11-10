@@ -24,7 +24,7 @@
 													<tbody>
 														<tr>
 															<td style="width:64px;">
-																<img height="auto" src="https://new.hadefit.com/hadef-v1.4/assets/images/logo.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="64" />
+																<img height="auto" src="https://bills.hadefit.com/dashboard/assets/img/logo.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="64" />
 															</td>
 														</tr>
 													</tbody>

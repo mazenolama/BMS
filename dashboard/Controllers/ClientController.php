@@ -5,7 +5,7 @@
     $errors = array();
     
     /***************         Get All Clients               ***************/
-        if(isset($_GET['page']) && $_GET['page'] =='View-Clients' ||  $file =='index.php'){
+        if(  $path  =='Clients' ||  $path == 'Dashboard'){
             $query = "SELECT * FROM `clients` WHERE 1 ORDER BY created_at DESC";
             $execute = mysqli_query($con, $query);
             $fetch_clients = array();
@@ -45,7 +45,7 @@
                 
                 if(mysqli_multi_query($con, $query)){
                     $_SESSION['success'] = 'Created A New Client Successfully';
-                    die("<script>window.location = 'index.php?page=View-Clients'; window.reload();</script>");
+                    die("<script>window.location = 'Clients'; window.reload();</script>");
                 }
                 else{
                     $_SESSION['error'] = 'Failed To Create A New Client';
@@ -84,7 +84,7 @@
                             
                             if(mysqli_multi_query($con, $query)){
                                 $_SESSION['success'] = 'Updated An Existing Client Successfully';
-                                die("<script>window.location = 'index.php?page=View-Clients'; window.reload();</script>");
+                                die("<script>window.location = 'Client?c_id=$c_id'; window.reload();</script>");
                             }
                             else{
                                 $_SESSION['error'] = 'Failed To Updated An Existing Client';
@@ -115,7 +115,7 @@
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A Client Successfully';
-                die("<script>window.location = 'index.php?page=View-Clients';window.reload(); </script>");
+                die("<script>window.location = 'Clients';window.reload(); </script>");
             }
             else{
                 $_SESSION['error'] = 'Failed To Delete A Client';

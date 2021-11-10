@@ -9,7 +9,7 @@
                     <h4>Create New Invoice</h4>
                   </div>
                   <div class="card-body">
-                    <form action="index.php?page=Create-Invoice" method="POST">
+                    <form action="Create-Invoice" method="POST">
                       
                         <div class="divider">Invoice Information</div>
                         <fieldset>

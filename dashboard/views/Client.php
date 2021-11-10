@@ -11,12 +11,12 @@
                                 <h4>Client : #<?=$_GET['c_id']; ?></h4>
                                 <?php if($user_info['role'] == 'Admin'): ?>
                                     <div style="text-align: right;">
-                                        <a href="index.php?page=Edit-Client&c_id=<?=$_GET['c_id'];?>">
+                                        <a href="Edit-Client?c_id=<?=$_GET['c_id'];?>">
                                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit This Client">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                         </a>
-                                        <a href="index.php?page=Client&action=delete-client&c_id=<?=$_GET['c_id'];?>">
+                                        <a href="Client?action=delete-client&c_id=<?=$_GET['c_id'];?>">
                                             <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This Client">
                                                 <i class="fas fa-trash"></i>
                                             </button>

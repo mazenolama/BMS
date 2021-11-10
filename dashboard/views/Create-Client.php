@@ -9,7 +9,7 @@ require_once './Controllers/ClientController.php';
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <div class="card">
-                        <form class="needs-validation" method="POST" autocomplete="off" action="index.php?page=Create-Client" novalidate="">
+                        <form class="needs-validation" method="POST" autocomplete="off" action="Create-Client" novalidate="">
                             <div class="card-header">
                                 <h4>Create Client</h4>
                             </div>

@@ -25,7 +25,7 @@
 
     $('#invoices-table').on( 'click', 'tbody tr', function () {
         var id = $(this).children('.sorting_1').eq(0).text(); 
-        window.location= 'index.php?page=Invoice&i_id='+id;
+        window.location= 'Invoice?i_id='+id;
     } );
 
 </script>

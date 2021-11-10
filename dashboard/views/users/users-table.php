@@ -25,7 +25,7 @@
 
     $('#users-table').on( 'click', 'tbody tr', function () {
         var id = $(this).children('.sorting_1').eq(0).text(); 
-        window.location= 'index.php?page=User&u_id='+id;
+        window.location= 'User?u_id='+id;
     } );
 
 </script>

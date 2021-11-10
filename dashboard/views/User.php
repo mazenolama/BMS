@@ -14,12 +14,12 @@
                                 <?php if($user_info['role'] == 'Admin'): ?>
 
                                     <div style="text-align: right;">
-                                        <a href="index.php?page=Edit-User&u_id=<?=$_GET['u_id'];?>">
+                                        <a href="Edit-User?u_id=<?=$_GET['u_id'];?>">
                                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit This User">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                         </a>
-                                        <a href="index.php?page=User&action=delete-user&u_id=<?=$_GET['u_id'];?>">
+                                        <a href="User?action=delete-user&u_id=<?=$_GET['u_id'];?>">
                                             <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This User">
                                                 <i class="fas fa-trash"></i>
                                             </button>

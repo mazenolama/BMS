@@ -6,8 +6,13 @@
     unset ($_SESSION["password"]);
     error_reporting(E_ALL); 
     ini_set('display_errors', 1);
-    $parts = explode('/', $_SERVER["SCRIPT_NAME"]);
-    $file = $parts[count($parts) - 1];
+
+    $path = basename($_SERVER['REQUEST_URI']);
+    $path = explode('?',$path);
+    $path = $path[0];
+    
+    if($path == 'dashboard')
+      $path = 'Dashboard';
 
     /***************    Checking Vaild Authorization       ***************/
         $email = $_SESSION['email'];
@@ -71,7 +76,7 @@
 
                 if(mysqli_query($con, $query)){
                     $_SESSION['success'] = 'Updated An Existing User Successfully';
-                    die("<script>window.location = 'index.php?page=Profile'; window.reload();</script>");
+                    die("<script>window.location = 'Profile'; window.reload();</script>");
                 }
                 else{
                     $_SESSION['error'] = 'Failed To Updated An Existing User';
@@ -111,25 +116,16 @@
         if(isset($_POST['logout'])){
             session_unset();
             session_destroy();
-            header('Location: index.php');
+            header('Location: ../');
         }
     /***************                Logout                 ***************/
-
-    /**************         Get Page Name Function         ***************/
-        function pageName(){
-            if(isset($_GET['page']))
-                echo $_GET['page'];
-            else
-                echo 'Dashboard' ;
-        }
-    /**************         Get Page Name Function         ***************/
 
     /**************         Mark As Read Function          ***************/
         if(array_key_exists('flush', $_POST)){
             $con =  dbConnection();
             $query ="UPDATE notifications SET status='read' WHERE status='unread'";
             mysqli_query($con, $query);
-            die("<script>window.location = 'index.php'; window.reload();</script>");
+            die("<script>window.location = '../dashboard'; window.reload();</script>");
         }
     /**************         Mark As Read Function          ***************/
 

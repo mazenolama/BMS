@@ -11,12 +11,12 @@
                                 <h4>Invoice : #<?=$_GET['i_id']; ?></h4>
                                 <?php if($user_info['role'] == 'Admin'): ?>
                                     <div style="text-align: right;">
-                                        <a href="index.php?page=Edit-Invoice&i_id=<?=$_GET['i_id'];?>">
+                                        <a href="Edit-Invoice?i_id=<?=$_GET['i_id'];?>">
                                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit This Invoice">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                         </a>
-                                        <a href="index.php?page=Invoice&action=delete-invoice&i_id=<?=$_GET['i_id'];?>">
+                                        <a href="Invoice?action=delete-invoice&i_id=<?=$_GET['i_id'];?>">
                                             <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete This Invoice">
                                                 <i class="fas fa-trash"></i>
                                             </button>

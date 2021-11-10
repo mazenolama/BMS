@@ -6,7 +6,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <div class="card">
-                        <form class="needs-validation" method="POST" autocomplete="off" action="index.php?page=Create-User" novalidate="">
+                        <form class="needs-validation" method="POST" autocomplete="off" action="Create-User" novalidate="">
                             <div class="card-header">
                                 <h4>Create User</h4>
                             </div>

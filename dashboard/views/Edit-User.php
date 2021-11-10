@@ -6,7 +6,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <div class="card">
-                        <form class="needs-validation" method="POST" autocomplete="off" action="index.php?page=Edit-User&u_id=<?= $_GET['u_id'];?>" novalidate="">
+                        <form class="needs-validation" method="POST" autocomplete="off" action="Edit-User?u_id=<?= $_GET['u_id'];?>" novalidate="">
                             <div class="card-header">
                                 <h4>Update User</h4>
                             </div>

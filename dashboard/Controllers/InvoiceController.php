@@ -6,7 +6,7 @@
     $invoice_status = array("Unpaid","Paid","Part-Paid");
 
     /***************       Get id,fname,lname Clients       ***************/
-        if(isset($_GET['page']) && $_GET['page']=='Create-Invoice' || $_GET['page']=='Edit-Invoice' ){
+        if( $path =='Create-Invoice' ||  $path =='Edit-Invoice' ){
             $query = "SELECT id,fname,lname FROM `clients` WHERE 1 ORDER BY created_at DESC";
             $execute = mysqli_query($con, $query);
             $fetch_clients = array();
@@ -50,7 +50,7 @@
 
                 if(mysqli_multi_query($con, $query)){
                     $_SESSION['success'] = 'Created A New Invoice Successfully';
-                    die("<script>window.location = 'index.php?page=View-Invoices'; window.reload();</script>");
+                    die("<script>window.location = 'Invoices'; window.reload();</script>");
                 }
                 else{
                     $_SESSION['error'] = 'Failed To Create A New Invoice';
@@ -63,7 +63,7 @@
     /***************        Create New Invoice             ***************/
 
     /***************          Get All Invoices             ***************/
-        if(isset($_GET['page']) && $_GET['page']=='View-Invoices' ){
+        if($path == 'Invoices' ){
 
             $query = "SELECT invoices.*, clients.fname,clients.lname
                     FROM clients
@@ -140,7 +140,7 @@
                 
                 if(mysqli_multi_query($con, $query)){
                     $_SESSION['success'] = 'Updated An Existing Invoice Successfully';
-                    die("<script>window.location = 'index.php?page=View-Invoices'; window.reload();</script>");
+                    die("<script>window.location = 'Invoice?i_id=$i_id'; window.reload();</script>");
                 }
                 else{
                     $_SESSION['error'] = 'Failed To Updated An Existing Invoice';
@@ -162,7 +162,7 @@
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A Invoice Successfully';
-                die("<script>window.location = 'index.php?page=View-Invoices';window.reload(); </script>");
+                die("<script>window.location = 'Invoices';window.reload(); </script>");
             }
             else{
                 $_SESSION['error'] = 'Failed To Delete An Invoice';
