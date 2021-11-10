@@ -1,9 +1,6 @@
     <!-----------------  Clients DataTable   ----------------->
     <?php 
-      if(!isset($_GET['page']))
-        include_once('views/clients/clients-table.php');
-
-      if(isset($_GET['page']) && $_GET['page'] == 'View-Clients')
+      if(isset($_GET['page']) && $_GET['page'] == 'View-Clients' ||  $file =='index.php')
         include_once('views/clients/clients-table.php');
     ?>
     <!----------------- Clients DataTable   ----------------->
