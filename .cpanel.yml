@@ -2,5 +2,5 @@
 ---
 deployment:
       tasks:
-        - export DEPLOYPATH=/home4/hadefitc/public_html/
+        - export DEPLOYPATH=/home4/hadefitc/public_html/bills.hadefit.com
         - /bin/cp index.html $DEPLOYPATH
