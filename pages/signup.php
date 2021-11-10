@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         </div>-->
-                    <div class="mb-4 text-muted text-center">Already Registered? <a href="<?=$_SERVER['SERVER_NAME']?>">Login</a></div>
+                    <div class="mb-4 text-muted text-center">Already Registered? <a href="<?= $path = " "?>">Login</a></div>
                 </div>
             </div>
         </div>
