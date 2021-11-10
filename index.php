@@ -5,6 +5,7 @@ require_once('./Controllers/AuthController.php');
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <?php include_once('./helper/head.php'); ?>
