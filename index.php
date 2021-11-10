@@ -15,7 +15,7 @@ require_once('./Controllers/AuthController.php');
         <!---------------- Main Content ----------------->
             <div class="app bg_one" >
                 <?php 
-                    if(!empty($path))
+                    if(empty($path))
                         include ('./pages/login.php');
                     else
                         include ('./pages/'. $path . '.php');
