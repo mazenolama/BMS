@@ -29,7 +29,10 @@ require_once('./Controllers/HomeController.php');
           if(isset($_GET['page']))
               include ('./views/'.$_GET['page'] . '.php');
           else
-              include_once('views/dashboard.php' );
+          {
+            $_GET['page'] ='Dashboard';
+            include ('./views/'.$_GET['page'] . '.php');
+          }
         ?>
         <!-- Main Content -->
 
