@@ -8,6 +8,7 @@
     ini_set('display_errors', 1);
 
     $path = basename($_SERVER['REQUEST_URI']);
+    var_dump($path);
     $path = explode('?',$path);
     $path = $path[0];
     
