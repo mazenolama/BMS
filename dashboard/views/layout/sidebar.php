@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-        <a href="../dashboard"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span
+        <a href="../dashboard"> <img alt="image" src="assets/img/sidebar-logo.png" class="header-logo" /> <span
             class="logo-name">Hadef Bills</span>
         </a>
     </div>

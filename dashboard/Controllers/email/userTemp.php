@@ -3,13 +3,13 @@
 		
 		<div id="wrapper" style="max-width: 530px; margin: auto auto; padding: 20px;">
 			
-			<div id="logo" style="">
+			<div id="logo">
 				<center><h1 style="margin-top: 2rem;"></h1></center>
 			</div>
 				
 			<div id="content" style="font-size: 16px; padding: 14px 10px; background-color: #fff;
 				moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 15px; -khtml-border-radius: 10px;
-				border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-color: #0f3a5d;border-width: 0;border-top-width: 5px; border-style: solid;">
+				border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-color:#6777ef;border-width: 0;border-top-width: 5px; border-style: solid;">
 
 				<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#fff;background-color:#fff;width:100%;border-radius: .5rem;">
 					<tbody>
@@ -19,12 +19,12 @@
 									<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:bottom;" width="100%">
 
 										<tr>
-											<td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+											<td align="center" style="font-size:0px;word-break:break-word;">
 												<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
 													<tbody>
 														<tr>
 															<td style="width:64px;">
-																<img height="auto" src="https://bills.hadefit.com/dashboard/assets/img/logo.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="64" />
+																<img height="auto" src="https://bills.hadefit.com/dashboard/Controllers/email/logo.png" style="border:0;display:block;outline:none;text-decoration:none;" width="100" height="100" />
 															</td>
 														</tr>
 													</tbody>
@@ -33,10 +33,9 @@
 										</tr>
 
 										<tr>
-											<td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:40px;word-break:break-word;">
+											<td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:20px;word-break:break-word;">
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:20px;font-weight:bold;line-height:1;text-align:center;color:#555;">
-												<strong>Hadef Bills</strong>
-													<p style="font-size: 14px;">Hadef Information Technology Co.</p>
+													<strong>Hadef Bills</strong>
 												</div>
 											</td>
 										</tr>
@@ -64,7 +63,7 @@
 											<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;text-align:left;color:#525252;">
 													Just click on the following link and you will navigate to <strong>Hadef Bills</strong> account .<br>
-													<a href="https://bills.hadefit.com" style="text-decoration: none;"><strong>Join Hadef Bills</strong></a><br>
+													<a href="https://bills.hadefit.com" style="text-decoration: none; color: #6777ef;"><strong>Join Hadef Bills</strong></a><br>
 												</div>
 											</td>
 										</tr>
@@ -95,13 +94,13 @@
                                             <tr>
                                                 <td style="vertical-align:bottom;padding:0;">
                                                     <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-                                                      <!--  <tr>
+                                                        <tr>
                                                             <td align="center" style="font-size:0px;padding:10;word-break:break-word;">
                                                                 <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-                                                                    <a href="https://hadefit.com/"><i class="fas fa-globe" style=" margin-right: .5rem;font-size: 1.2rem;"></i></a><a href="https://www.linkedin.com/company/hadef-information-technology"><i class="fab fa-linkedin-in" style="font-size: 1.2rem;"></i></a> 
+																<span>Powered By Hadef IT Co. © 2021 <a style="text-decoration:none;color: #6777ef;" href="https://hadefit.com">Hadef IT Co. </a>  All rights reserved.</span>
                                                                 </div>
                                                             </td>
-                                                        </tr>-->
+                                                        </tr>
                                                         <tr>
                                                             <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                                                 <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">

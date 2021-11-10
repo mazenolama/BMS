@@ -6,8 +6,8 @@
                 <div class="card card-primary">
                 <div class="card-header" style="display: block;">
                     <div class="text-center mt-3">
-                        <img src="assets/img/bills.png" height="100" width="100"  alt="...">
-                        <h3 style="font-family: cursive;font-size: 2.1rem;color: #121212eb;">Hadef Bills</h3>
+                        <img src="assets/img/logo.png" height="90" width="90"  alt="...">
+                        <h3 style="font-family: cursive;font-size: 1.4rem;color: #121212eb;">Hadef Bills</h3>
                     </div>
                 </div>
                 <div class="card-body">
@@ -44,7 +44,7 @@
                             <div class="d-block">
                                 <label for="password" class="control-label">Password</label>
                                 <div class="float-right">
-                                    <a href="index.php?page=forgot-password" class="text-small">
+                                    <a href="forgot-password" class="text-small">
                                         Forgot Password?
                                     </a>
                                 </div>
@@ -52,12 +52,6 @@
                             <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                             <div class="invalid-feedback">
                                 please fill in your password
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                                <label class="custom-control-label" for="remember-me">Remember Me</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -70,7 +64,7 @@
 
                     <div class="mt-5 text-muted text-center">
                         Don't have a Hadef Bills account?
-                        <a href="index.php?page=signup">Sign Up Now</a>
+                        <a href="signup">Sign Up Now</a>
                     </div>
                 </div>
                

@@ -25,7 +25,7 @@ require_once('./Controllers/HomeController.php');
         <!-- Sidebar -->
 
         <!-- Main Content -->
-        <?php include ('./views/'.$path . '.php');?>
+        <?php include ('./views/'. $path . '.php');?>
         <!-- Main Content -->
 
         <!-- Footer -->

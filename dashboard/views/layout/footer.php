@@ -1,4 +1,4 @@
 <footer class="main-footer">
 
-     <span>Powered By Hadef IT Co. <a href="https://hadefit.com">© 2021 Hadef IT Co.  All rights reserved. </a></span>
+     <span>Powered By Hadef IT Co. © 2021 <a href="https://hadefit.com"> Hadef IT Co. </a> All rights reserved. </span>
 </footer>

@@ -7,6 +7,10 @@
                     <div class="card-header">
                         <h4>Register</h4>
                     </div>
+                    <div class="text-center mt-1">
+                        <img src="assets/img/logo.png" height="80" width="80"  alt="...">
+                        <h3 style="font-family: cursive;font-size: 1.4rem;color: #121212eb;">Hadef Bills</h3>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="index.php?page=signup" autocomplete="">
                         <?php 
@@ -79,7 +83,7 @@
                                 </div>
                             </div>
                         </div>-->
-                    <div class="mb-4 text-muted text-center">Already Registered? <a href="./index.php">Login</a></div>
+                    <div class="mb-4 text-muted text-center">Already Registered? <a href="<?=$_SERVER['SERVER_NAME']?>">Login</a></div>
                 </div>
             </div>
         </div>

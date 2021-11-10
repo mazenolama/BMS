@@ -6,6 +6,10 @@
                     <div class="card-header">
                         <h4>Email Verification</h4>
                     </div>
+                    <div class="text-center mt-1">
+                        <img src="assets/img/logo.png" height="90" width="90"  alt="...">
+                        <h3 style="font-family: cursive;font-size: 1.4rem;color: #121212eb;">Hadef Bills</h3>
+                    </div>
                     <div class="card-body">
                         <?php 
                             if(isset($_SESSION['info'])){

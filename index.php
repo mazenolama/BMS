@@ -15,10 +15,11 @@ require_once('./Controllers/AuthController.php');
         <!---------------- Main Content ----------------->
             <div class="app bg_one" >
                 <?php 
-                    if(isset($_GET['page']))
-                        include('./pages/'.$_GET['page'] . '.php');
+                    if($path =='bills')
+                        include ('./pages/login.php');
                     else
-                        include('./pages/login.php' );
+                        include ('./pages/'. $path . '.php');
+
                 ?>
             </div>
         <!---------------- Main Content ----------------->
