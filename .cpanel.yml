@@ -1,0 +1,6 @@
+
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home4/hadefitc/public_html/bills
+        - /bin/cp -r * $DEPLOYPATH
