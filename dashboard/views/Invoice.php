@@ -33,19 +33,31 @@
 
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Client Name: </label>
-                                        <label class="label-info"><?= $fetch_invoice['fname']. ' '. $fetch_invoice['lname'];?></label>
+                                        <label class="label-info"><?= $fetch_client['fname']. ' '. $fetch_client['lname'];?></label>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Status: </label>
-                                        <label class="label-info"><?= $fetch_invoice['invoice_status'];?></label>
+                                        <?php if($fetch_invoice['invoice_status']=='Paid'): ?>
+                                            <label class="label-info"><span class="badge badge-success">Paid</span></label>
+                                        <?php endif; ?>
+                                        <?php if($fetch_invoice['invoice_status']=='Unpaid'): ?>
+                                            <label class="label-info"> <span class="badge badge-danger">Unpaid</span></label>
+                                        <?php endif; ?>
+                                        <?php if($fetch_invoice['invoice_status']=='Part-Paid'): ?>
+                                            <label class="label-info"> <span class="badge badge-warning">Part Paid</span></label>
+                                        <?php endif; ?>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label class="label-title">Invoice Amount: </label>
-                                        <label class="label-info"><?= $fetch_invoice['amount'];?></label>
+                                        <label class="label-title">Email Sent Status: </label>
+                                        <?php if($fetch_invoice['email_status']){ ?>
+                                            <label class="label-info"><span class="badge badge-success">True</span></label>
+                                        <?php } else {?>
+                                            <label class="label-info"> <span class="badge badge-danger">False</span></label>
+                                        <?php } ?>
                                     </div>
                                
                                 </div>
@@ -53,31 +65,39 @@
 
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Tax:</label>
-                                        <label class="label-info"><?= $fetch_invoice['tax'];?> (<?=$fetch_invoice['tax_prg']; ?>%)</label> 
+                                        <label class="label-info"><?= $fetch_invoice['tax'];?> SAR (<?=$fetch_invoice['tax_prg']; ?>%)</label> 
                                     </div>  
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Discount:</label>
-                                        <label class="label-info"><?= $fetch_invoice['discount'];?> (<?= $fetch_invoice['discount_prg'];?>%)</label>
+                                        <label class="label-info"><?= $fetch_invoice['discount'];?> SAR (<?= $fetch_invoice['discount_prg'];?>%)</label>
                                     </div>
 
                                 </div>
                                 <div class="form-group row">
                                     <div class="form-group col-md-6">
+                                        <label class="label-title">Invoice Amount: </label>
+                                        <label class="label-info"><?= $fetch_invoice['amount'];?> SAR</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Total:</label>
-                                        <label class="label-info"><?= $fetch_invoice['total'];?></label>
+                                        <label class="label-info"><?= $fetch_invoice['total'];?> SAR</label>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="form-group col-md-6">
-                                        <label class="label-title">Invoice Payment Date: </label>
-                                        <label class="label-info"><?= $fetch_invoice['payment_date'];?></label>
-                                    </div>
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Created Date: </label>
                                         <label class="label-info"><?= $fetch_invoice['created_date'];?></label>
                                     </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="label-title">Invoice Payment Date: </label>
+                                        <label class="label-info"><?= $fetch_invoice['payment_date'];?></label>
+                                    </div>
                                 </div>
                                 <div class="form-group row">
+                                    <div class="form-group col-md-6">
+                                        <label class="label-title">Last Update: </label>
+                                        <label class="label-info"><?= time_elapsed_string($fetch_invoice['updated_at']);?></label>
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label class="label-title">Invoice Notes: </label>
                                         <label class="label-info"><?= $fetch_invoice['note'];?></label>

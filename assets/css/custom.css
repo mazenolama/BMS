@@ -38,3 +38,10 @@ input[type=number] {
   background-size: auto 100%;
   z-index: -1;
 }
+a:hover{
+  text-decoration: none !important;
+}
+.theme-white a:hover {
+  color: #4753af !important;
+  text-decoration: none !important;
+}

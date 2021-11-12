@@ -23,7 +23,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="label-title">Client Name : </label>
                                             <select class="form-control select2" name="client_id">
-                                                <option value="<?= $fetch_invoice['clientID']?>" disabled selected><?=$fetch_invoice['fname'].' '. $fetch_invoice['lname'] ?></option>
+                                                <option value="<?= $fetch_client['clientID']?>" disabled selected><?=$fetch_client['fname'].' '. $fetch_client['lname'] ?></option>
                                             </select>
                                         </div>
                                     </div>

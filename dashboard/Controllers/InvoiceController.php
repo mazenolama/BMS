@@ -1,6 +1,7 @@
 <?php
 
     require_once("database/Database.php");
+    require_once("Controllers/email/mail.php");
     $con = dbConnection();
     $errors = array();
     $invoice_status = array("Unpaid","Paid","Part-Paid");
@@ -62,6 +63,55 @@
         }
     /***************        Create New Invoice             ***************/
 
+    /***************      Create New Invoice & SEND        ***************/
+        if(isset($_POST['create-&-send-invoice'])){
+
+            $title = mysqli_real_escape_string($con,$_POST['title']);
+            $amount = mysqli_real_escape_string($con,$_POST['amount']);
+            $tax = mysqli_real_escape_string($con,$_POST['tax']);
+            $tax_prg = mysqli_real_escape_string($con,$_POST['tax_prg']);
+            $discount = mysqli_real_escape_string($con,$_POST['discount']);
+            $discount_prg = mysqli_real_escape_string($con,$_POST['discount_prg']);
+            $total = mysqli_real_escape_string($con,$_POST['total']);
+            $invoice_status = mysqli_real_escape_string($con,$_POST['picked_status']);
+            $created_date = mysqli_real_escape_string($con,$_POST['created_date']);
+            $payment_date = mysqli_real_escape_string($con,$_POST['payment_date']);
+            $note = mysqli_real_escape_string($con,$_POST['notes']);
+            $clientID = mysqli_real_escape_string($con,$_POST['client_id']);
+
+            $q = "SELECT fname,lname,email FROM `clients` WHERE id= '$clientID'";
+            $exe = mysqli_query($con, $q);
+            $fetch_client = array();
+            if($exe){
+                if(mysqli_num_rows($exe) > 0){
+                    while($fetch = $exe->fetch_assoc()) {
+                        $fetch_client = $fetch;
+                    }
+                }
+            }
+            $notfiy = 'Has Created A New Invoice';
+
+          if(!empty($title) && !empty($amount) && !empty($total))
+            {
+                $query = " INSERT INTO invoices (title, amount, tax, tax_prg, discount, discount_prg, total, invoice_status, created_date, payment_date, note, clientID)
+                VALUES ('$title', '$amount', '$tax','$tax_prg', '$discount','$discount_prg','$total','$invoice_status','$created_date', '$payment_date', '$note', '$clientID');";
+                $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+
+                if(mysqli_multi_query($con, $query)){
+
+                    email_new_invoice($fetch_client['fname'],$fetch_client['lname'],$fetch_client['email'],$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total,$payment_date,$created_date,$note);
+                }
+                else{
+                    $_SESSION['error'] = 'Failed To Create A New Invoice';
+                } 
+            }
+            else{
+                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
+            }
+        }
+    /***************      Create New Invoice & SEND        ***************/
+
+
     /***************          Get All Invoices             ***************/
         if($path == 'Invoices' ){
 
@@ -91,9 +141,7 @@
         if(isset($_GET['i_id'])){
 
             $i_id= $_GET['i_id'];
-            $query = "SELECT invoices.*, clients.fname,clients.lname
-            FROM clients
-            INNER JOIN invoices ON invoices.id='$i_id';";
+            $query = "SELECT * FROM invoices WHERE id = '$i_id'";
 
             $execute = mysqli_query($con, $query);
             $fetch_invoice = array();
@@ -102,6 +150,12 @@
             {
                 if(mysqli_num_rows($execute) > 0){
                     $fetch_invoice = $execute->fetch_assoc();
+
+                    $query = "SELECT id,fname,lname FROM clients WHERE id = ".$fetch_invoice['clientID'];
+                    $execute = mysqli_query($con, $query);
+                    if($execute)
+                        if(mysqli_num_rows($execute) > 0)
+                            $fetch_client = $execute->fetch_assoc();
                 }
                 else{
                     $errors['get_invoice'] = 'No Data To Show For This Invoice';

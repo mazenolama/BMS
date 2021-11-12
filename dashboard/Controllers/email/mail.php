@@ -10,7 +10,7 @@
       $swap_var = array(
         "{USER_FIRST_NAME}" => $fname_user,
         "{USER_LAST_NAME}" => $lname_user,
-        "{PASSWORD}" => $_POST['password'],
+        "{PASSWORD}" => $password_user,
         "{EMAIL}" => $email_user,
         "{FULL_NAME}" =>  $full_name,
       );
@@ -46,4 +46,59 @@
      
     }
   /************************* Create New User ************************/
+
+  /************************* Create And Sent New Invoice ************************/
+
+    function email_new_invoice($client_fname,$client_lname,$client_email,$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total,$notes){
+      $subject = "Hadef Information Technology Co. Monthly Invoice";
+     
+      $hadefEmail = "mazen.olama00@gmail.com";
+      $clinet_template_file= "Controllers/email/invoiceAfterCreate.php";
+
+      $swap_var = array(
+        "{CLIENT_FIRST_NAME}" => $client_fname,
+        "{CLIENT_LAST_NAME}" => $client_lname,
+        "{INVOICE_TITLE}" => $title,
+        "{AMOUNT}" => $amount,
+        "{TAX}" => $tax,
+        "{TAX_PRG}" => $tax_prg,
+        "{DISCOUNT}" => $discount,
+        "{DISCOUNT_PRG}" => $discount_prg,
+        "{SUBTOTAL}" => "SUBTOTAL",
+        "{TOTAL}" => $total,
+        "{NOTES}" => $notes,
+      );
+
+      if(file_exists($clinet_template_file))
+      {
+        $message = file_get_contents($clinet_template_file);
+      }
+      else{
+        $_SESSION['error']='unable to locate template file';
+      }
+
+      // search and replace for predefined variables, like SITE_ADDR, {NAME}, {lOGO}, {CUSTOM_URL} etc
+      foreach (array_keys($swap_var) as $key){
+        if (strlen($key) > 2 && trim($swap_var[$key]) != '')
+          $message = str_replace($key, $swap_var[$key], $message);
+      }
+
+      $clientHeaders = 'From: Hadef IT <'.$hadefEmail.'>' . "\r\n" .
+                      'Bcc: mazen.ziad@hadefit.com' . "\r\n" .
+                      'MIME-Version: 1.0' . "\r\n" .
+                      'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .
+                      'X-Mailer: PHP/' . phpversion();
+
+      if(mail($client_email, $subject, $message, $clientHeaders))
+      {
+          $_SESSION['success'] = 'Created A New Invoice And Sent It Successfully';
+          die("<script>window.location = 'Invoices'; window.reload();</script>");
+      }
+      else{
+          $_SESSION['error']='Created A New Invoice But Failed while sending Email!';
+      }
+     
+    }
+  /************************* Create And Sent New Invoice ************************/
+
 ?> 

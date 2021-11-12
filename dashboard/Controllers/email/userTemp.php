@@ -97,7 +97,7 @@
                                                         <tr>
                                                             <td align="center" style="font-size:0px;padding:10;word-break:break-word;">
                                                                 <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-																<span>Powered By Hadef IT Co. © 2021 <a style="text-decoration:none;color: #6777ef;" href="https://hadefit.com">Hadef IT Co. </a>  All rights reserved.</span>
+																	<span>Powered By <a style="text-decoration:none;color: #6777ef;" href="https://hadefit.com">Hadef IT Co. </a> © 2021 All rights reserved.</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
