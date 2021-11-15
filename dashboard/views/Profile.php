@@ -1,3 +1,5 @@
+<?php require_once './Controllers/UserController.php' ?>
+
 <div class="main-content" style="min-height: 600px;">
     <section class="section">
         <div class="section-body">
@@ -7,20 +9,8 @@
                     <div class="card">
                     <form class="needs-validation" method="POST" autocomplete="off" action="Profile" novalidate="">
                             <div class="card-header">
-                                <h4>Settings</h4>
+                                <h4>Profile</h4>
                             </div>
-                            <?php 
-                                if(count($errors) > 0) { ?>
-                                    <div class="alert alert-danger text-center">
-                                        <?php
-                                        foreach($errors as $showerror){
-                                            echo $showerror;
-                                        }
-                                        ?>
-                                    </div>
-                                <?php
-                                }
-                            ?>
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="form-group col-md-6">

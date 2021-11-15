@@ -7,7 +7,7 @@ require_once('./Controllers/HomeController.php');
 <html lang="en">
   <head>
     <!-- CSS & Title & Links -->
-    <?php include_once('./views/helper/head.php') ?>
+    <?php include_once('./views/helper/head.php'); ?>
     <!-- CSS & Title & Links -->
   </head>
 
@@ -17,11 +17,11 @@ require_once('./Controllers/HomeController.php');
     <div id="app">
       <div class="main-wrapper main-wrapper-1">
         <!-- Navbar -->
-        <?php include_once('./views/layout/navbar.php') ?>
+        <?php include_once('./views/layout/navbar.php'); ?>
         <!-- Navbar -->
 
         <!-- Sidebar -->
-        <?php include_once('./views/layout/sidebar.php') ?>
+        <?php include_once('./views/layout/sidebar.php'); ?>
         <!-- Sidebar -->
 
         <!-- Main Content -->
@@ -29,14 +29,14 @@ require_once('./Controllers/HomeController.php');
         <!-- Main Content -->
 
         <!-- Footer -->
-        <?php include_once('./views/layout/footer.php') ?>
+        <?php include_once('./views/layout/footer.php'); ?>
         <!-- Footer -->
 
       </div>
     </div>
     
     <!-- JS scripts -->
-    <?php include_once('./views/helper/scripts.php') ?>
+    <?php include_once('./views/helper/scripts.php'); ?>
     <!-- JS scripts -->
     
     <!-- JS scripts Specific Conditions -->

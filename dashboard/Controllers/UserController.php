@@ -4,7 +4,55 @@
     $con = dbConnection();
     $errors = array();
 
-    /***************         Get All Users               ***************/
+    /***************         Update Employee Profile       ***************/
+        if(isset($_POST['update-profile'])){
+
+            $datetime = date_create()->format('Y-m-d H:i:s');
+            $notfiy = 'Has Updated An Existing User';
+
+            $fname_user = mysqli_real_escape_string($con,$_POST['fname']);
+            $lname_user = mysqli_real_escape_string($con,$_POST['lname']);
+            $email_user = mysqli_real_escape_string($con,$_POST['email']);
+            $phone_no_user = mysqli_real_escape_string($con,$_POST['phone_no']);
+            $role_user = mysqli_real_escape_string($con,$_POST['role']);
+            $curr_status_user = mysqli_real_escape_string($con,$_POST['curr_status']);
+            $password_user = mysqli_real_escape_string($con,$_POST['password']);
+                                    
+            if(!empty($fname_user) && !empty($email_user) && !empty($phone_no_user)){
+                
+                if(!empty($password_user)){
+                    $password_user= password_hash($password_user, PASSWORD_ARGON2ID);
+
+                    $query  = "UPDATE users SET fname='$fname_user',lname='$lname_user',
+                                email='$email_user',phone_no='$phone_no_user',notes='$notes_user',
+                                role='$role_user', curr_status='$curr_status_user', password='$password_user',
+                                updated_at='$datetime' WHERE id='$user_id';";
+                }
+                else{
+                    $query  = "UPDATE users SET fname='$fname_user',lname='$lname_user',
+                                email='$email_user',phone_no='$phone_no_user',notes='$notes_user',
+                                role='$role_user', curr_status='$curr_status_user',updated_at='$datetime' 
+                                WHERE id='$user_id';";
+                }
+
+                if(mysqli_query($con, $query)){
+                    $_SESSION['success'] = 'Updated An Existing User Successfully';
+                    die("<script>window.location = 'Profile'; window.reload();</script>");
+                }
+                else{
+                    $_SESSION['error'] = 'Failed To Updated An Existing User';
+                }
+                
+            }
+            else{
+                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
+            }
+        }
+        
+        
+    /***************         Update Employee Profile       ***************/
+
+    /***************           Get All Users               ***************/
         if( $path =='Users'){
 
             $query = "SELECT * FROM `users` WHERE 1 ORDER BY created_at DESC";
@@ -24,9 +72,9 @@
                 $errors['get_users'] = 'Failed To Get Info. From Database';
             }
         }
-    /***************         Get All Users               ***************/
+    /***************           Get All Users               ***************/
 
-    /***************        Update Existing User         ***************/
+    /***************         Update Existing User          ***************/
         if(isset($_GET['u_id'])){
 
             $u_id= $_GET['u_id'];
@@ -94,9 +142,9 @@
                 $errors['get_user'] = 'Failed To Get Info. From Database';
             }
         }
-    /***************        Update Existing User         ***************/
+    /***************         Update Existing User          ***************/
 
-    /***************            Delete User              ***************/
+    /***************             Delete User               ***************/
         if(isset($_GET['action']) && $_GET['action']== 'delete-user')
         {
             $u_id= $_GET['u_id'];
@@ -112,9 +160,9 @@
                 $_SESSION['error'] = 'Failed To Delete A User';
             }
         }
-    /***************            Delete User              ***************/
+    /***************             Delete User               ***************/
 
-    /***************         Create New User             ***************/
+    /***************          Create New User              ***************/
         if(isset($_POST['create-user'])){
             $fname_user = mysqli_real_escape_string($con,$_POST['fname']);
             $lname_user = mysqli_real_escape_string($con,$_POST['lname']);
@@ -144,7 +192,7 @@
                 $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
             }
         }
-    /***************         Create New User             ***************/
+    /***************          Create New User              ***************/
     
 
     

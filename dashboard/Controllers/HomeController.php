@@ -42,54 +42,58 @@
         }
     /***************    Checking Vaild Authorization       ***************/
 
-    /***************         Update Employee Profile       ***************/
-
-        if(isset($_POST['update-profile'])){
-
-            $datetime = date_create()->format('Y-m-d H:i:s');
-            $notfiy = 'Has Updated An Existing User';
-
-            $fname_user = mysqli_real_escape_string($con,$_POST['fname']);
-            $lname_user = mysqli_real_escape_string($con,$_POST['lname']);
-            $email_user = mysqli_real_escape_string($con,$_POST['email']);
-            $phone_no_user = mysqli_real_escape_string($con,$_POST['phone_no']);
-            $role_user = mysqli_real_escape_string($con,$_POST['role']);
-            $curr_status_user = mysqli_real_escape_string($con,$_POST['curr_status']);
-            $password_user = mysqli_real_escape_string($con,$_POST['password']);
-                                    
-            if(!empty($fname_user) && !empty($email_user) && !empty($phone_no_user)){
-                
-                if(!empty($password_user)){
-                    $password_user= password_hash($password_user, PASSWORD_ARGON2ID);
-
-                    $query  = "UPDATE users SET fname='$fname_user',lname='$lname_user',
-                                email='$email_user',phone_no='$phone_no_user',notes='$notes_user',
-                                role='$role_user', curr_status='$curr_status_user', password='$password_user',
-                                updated_at='$datetime' WHERE id='$user_id';";
-                }
-                else{
-                    $query  = "UPDATE users SET fname='$fname_user',lname='$lname_user',
-                                email='$email_user',phone_no='$phone_no_user',notes='$notes_user',
-                                role='$role_user', curr_status='$curr_status_user',updated_at='$datetime' 
-                                WHERE id='$user_id';";
-                }
-
-                if(mysqli_query($con, $query)){
-                    $_SESSION['success'] = 'Updated An Existing User Successfully';
-                    die("<script>window.location = 'Profile'; window.reload();</script>");
-                }
-                else{
-                    $_SESSION['error'] = 'Failed To Updated An Existing User';
-                }
-                
+    /***************         Insert Company Info           ***************/
+        if(isset($_POST['insert-company-info']))
+        {
+            $company_name = mysqli_real_escape_string($con,$_POST['name']);
+            $company_email = mysqli_real_escape_string($con,$_POST['email']);
+            $company_address = mysqli_real_escape_string($con,$_POST['address']);
+            $company_phone = mysqli_real_escape_string($con,$_POST['phone']);
+            $query = " INSERT INTO company (name, email, address, phone)
+            VALUES ('$company_name', '$company_email', '$company_address', '$company_phone')";
+            if(mysqli_multi_query($con, $query)){
+                $_SESSION['success'] = 'Company Informations Has Saved Successfully';
             }
             else{
-                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
-            }
+                $_SESSION['error'] = 'Failed To Saved A Company Informations';
+            } 
         }
-        
-        
-    /***************         Update Employee Profile       ***************/
+    /***************         Insert Company Info           ***************/
+
+    /***************         Update Company Info           ***************/
+        if(isset($_POST['update-company-info']))
+        {
+            $company_name = mysqli_real_escape_string($con,$_POST['name']);
+            $company_email = mysqli_real_escape_string($con,$_POST['email']);
+            $company_address = mysqli_real_escape_string($con,$_POST['address']);
+            $company_phone = mysqli_real_escape_string($con,$_POST['phone']);
+            $query = "UPDATE company SET name= '$company_name', email= '$company_email',address ='$company_address' , phone ='$company_phone' WHERE 1";            
+            if(mysqli_multi_query($con, $query)){
+                $_SESSION['success'] = 'Company Informations Has Updated Successfully';
+            }
+            else{
+                $_SESSION['error'] = 'Failed To Updated A Company Informations';
+            } 
+        }
+    /***************         Update Company Info           ***************/
+
+    /***************         Get All Company Info          ***************/
+        if($path == 'Settings')
+        {
+            $query = "SELECT * FROM `company` WHERE 1";
+            if($execute = mysqli_query($con, $query))
+            {
+                if(mysqli_num_rows($execute) > 0){
+                    while($fetch = $execute->fetch_assoc()) {
+                        $fetch_company = $fetch;
+                    }
+                }
+            }
+            else{
+                $_SESSION['error'] = 'Failed To Get Company Informations';
+            } 
+        }
+    /***************         Get All Company Info          ***************/
 
     /***************         Get Notifications             ***************/
         

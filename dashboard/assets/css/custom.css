@@ -27,3 +27,9 @@
 .red{
     color: red;
 }
+.about-text{
+    font-weight: 800 !important;
+    color: #252525 !important;
+    font-family: inherit;
+    font-size: 15px !important;
+}
