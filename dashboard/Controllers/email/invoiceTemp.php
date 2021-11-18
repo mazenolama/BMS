@@ -34,7 +34,7 @@
 													<tbody>
 														<tr>
                                                             <td style="width:64px;">
-																<img height="auto" src="https://bills.hadefit.com/dashboard/Controllers/email/logo.png" style="border:0;display:block;outline:none;text-decoration:none;" width="100" height="100" />
+																<img height="auto" src="https://new.hadefit.com/hadef-v1.4/assets/images/logo.png" style="border:0;display:block;outline:none;text-decoration:none;" width="100" height="100" />
 															</td>
 														</tr>
 													</tbody>
@@ -46,16 +46,32 @@
                                         <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:bold;line-height:22px;text-align:center;color:#525252;">
                                                 Hadef Information Technology Co.
-                                                <p style="font-size: 20px;">The Monthly Invoice</p>
+                                                <p style="font-size: 20px;">{TITTLE}</p>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;margin-top: 1rem;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:22px;text-align:left;color:#000000;">
-                                                <p style="font-size: 16px;">Hello Dear <strong>{CLIENT_FIRST_NAME} {CLIENT_LAST_NAME}</strong></p>
+                                                <p style="font-size: 16px;">Dear <strong>{CLIENT_FIRST_NAME} {CLIENT_LAST_NAME}</strong></p>
                                                 <p>We would like to inform you about your Monthly Invoice</p>
                                             </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                            <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;">
+                                                <tr style="text-align:left;">
+                                                    <th style="padding: 0 15px 10px 0;">Invoice Date:</th>
+                                                    <th style="padding: 0 15px;"></th>
+                                                    <th style="padding: 0 0 0 14px;" align="right">{CREATED_DATE}</th>
+                                                </tr>
+                                                <tr style="text-align:left;">
+                                                    <th style="padding: 0 15px 10px 0;">Payment Date:</th>
+                                                    <th style="padding: 0 15px;"></th>
+                                                    <th style="padding: 0 0 0 14px;" align="right">{PAYMENT_DATE}</th>
+                                                </tr>
+                                            </table>
                                         </td>
                                     </tr>
                                     <tr>
@@ -72,12 +88,7 @@
                                                     <td style="padding: 0 0 0 15px;" align="right">{AMOUNT} SAR</td>
                                                 </tr>
                                                 
-                                                <tr style="border-bottom:2px solid #ecedee;text-align:left;padding:15px 0;">
-                                                    <td style="padding: 0 15px 5px 0;">Sub Total</td>
-                                                    <td style="padding: 0 15px;"></td>
-                                                    <td style="padding: 0 0 0 15px;" align="right">{SUBTOTAL} SAR</td>
-                                                </tr>
-                                                <tr style="border-bottom:2px solid #ecedee;text-align:left;padding:15px 0;">
+                                                <tr style="border-bottom:2px solid #ecedee;border-top:2px solid #ecedee;text-align:left;padding:15px 0;">
                                                     <td style="padding: 0 15px 5px 0;">Discount ({DISCOUNT_PRG}%)</td>
                                                     <td style="padding: 0 15px;"></td>
                                                     <td style="padding: 0 0 0 15px;" align="right">{DISCOUNT} SAR</td>
@@ -88,6 +99,11 @@
                                                     <td style="padding: 0 0 0 15px;" align="right">{TAX} SAR</td>
                                                 </tr>
                                                 <tr style="border-bottom:2px solid #ecedee;text-align:left;padding:15px 0;">
+                                                    <td style="padding: 0 15px 5px 0;">Sub Total</td>
+                                                    <td style="padding: 0 15px;"></td>
+                                                    <td style="padding: 0 0 0 15px;" align="right">{SUBTOTAL} SAR</td>
+                                                </tr>
+                                                <tr style="border-bottom:2px solid #ecedee;text-align:left;padding:15px 0;">
                                                     <td style="padding: 5px 15px 5px 0; font-weight:bold">TOTAL</td>
                                                     <td style="padding: 0 15px;"></td>
                                                     <td style="padding: 0 0 0 15px; font-weight:bold" align="right">{TOTAL} SAR</td>
@@ -95,10 +111,10 @@
                                             </table>
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:16px;text-align:left;color:#3f3f3f;">
-                                                <p><i>Note: {NOTES}</i></p>
                                                 <p><i>Please let us know if there any something wrong.</i></p>
                                             </div>
                                         </td>
@@ -134,7 +150,7 @@
                                                         <tr>
                                                             <td align="center" style="font-size:0px;padding:10;word-break:break-word;">
                                                                 <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-																    <span>Powered By <a style="text-decoration:none;color: #6777ef;" href="https://hadefit.com">Hadef IT Co. </a> © 2021 All rights reserved.</span>
+                                                                    <a style="text-decoration:none;color: #6777ef;" href="https://bills.hadefit.com">Hadef Bills </a> <span>Powered By <a style="text-decoration:none;color: #6777ef;" href="https://hadefit.com">Hadef IT Co. </a> © 2021 All rights reserved.</span>
                                                                 </div>
                                                             </td>
                                                         </tr>

@@ -47,26 +47,28 @@
     }
   /************************* Create New User ************************/
 
-  /************************* Create And Sent New Invoice ************************/
-
-    function email_new_invoice($client_fname,$client_lname,$client_email,$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total,$notes){
-      $subject = "Hadef Information Technology Co. Monthly Invoice";
+  /************************* Send Email Invoice ************************/
+    function email_invoice($i_id, $type, $about,$client_fname,$client_lname,$client_email,$created_date,$payment_date,$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total){
+      $subTotal =null;
+      $subject = "Hadef Information Technology Co. " . $about;
      
       $hadefEmail = "mazen.olama00@gmail.com";
-      $clinet_template_file= "Controllers/email/invoiceAfterCreate.php";
-
+      $clinet_template_file= "Controllers/email/invoiceTemp.php";
+      $subTotal = $amount;
       $swap_var = array(
+        "{TITTLE}" => $about,
         "{CLIENT_FIRST_NAME}" => $client_fname,
         "{CLIENT_LAST_NAME}" => $client_lname,
+        "{CREATED_DATE}" => $created_date,
+        "{PAYMENT_DATE}" => $payment_date,
         "{INVOICE_TITLE}" => $title,
         "{AMOUNT}" => $amount,
         "{TAX}" => $tax,
         "{TAX_PRG}" => $tax_prg,
         "{DISCOUNT}" => $discount,
         "{DISCOUNT_PRG}" => $discount_prg,
-        "{SUBTOTAL}" => "SUBTOTAL",
+        "{SUBTOTAL}" => $subTotal,
         "{TOTAL}" => $total,
-        "{NOTES}" => $notes,
       );
 
       if(file_exists($clinet_template_file))
@@ -77,7 +79,7 @@
         $_SESSION['error']='unable to locate template file';
       }
 
-      // search and replace for predefined variables, like SITE_ADDR, {NAME}, {lOGO}, {CUSTOM_URL} etc
+      // search and replace for predefined variables, Such as SITE_ADDR, {NAME}, {lOGO}, {CUSTOM_URL} etc
       foreach (array_keys($swap_var) as $key){
         if (strlen($key) > 2 && trim($swap_var[$key]) != '')
           $message = str_replace($key, $swap_var[$key], $message);
@@ -92,13 +94,16 @@
       if(mail($client_email, $subject, $message, $clientHeaders))
       {
           $_SESSION['success'] = 'Created A New Invoice And Sent It Successfully';
-          die("<script>window.location = 'Invoices'; window.reload();</script>");
+          if($type == 'create')
+            die("<script>window.location = 'Invoices'; window.reload();</script>");
+          else
+            die("<script>window.location = 'Invoice?i_id=$i_id'; window.reload();</script>");
       }
       else{
           $_SESSION['error']='Created A New Invoice But Failed while sending Email!';
       }
      
     }
-  /************************* Create And Sent New Invoice ************************/
+  /************************* Send Email Invoice ************************/
 
 ?> 

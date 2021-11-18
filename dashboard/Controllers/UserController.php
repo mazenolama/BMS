@@ -8,7 +8,7 @@
         if(isset($_POST['update-profile'])){
 
             $datetime = date_create()->format('Y-m-d H:i:s');
-            $notfiy = 'Has Updated An Existing User';
+            $notfiy = 'Your Profile Has Been Updated';
 
             $fname_user = mysqli_real_escape_string($con,$_POST['fname']);
             $lname_user = mysqli_real_escape_string($con,$_POST['lname']);
@@ -34,8 +34,8 @@
                                 role='$role_user', curr_status='$curr_status_user',updated_at='$datetime' 
                                 WHERE id='$user_id';";
                 }
-
-                if(mysqli_query($con, $query)){
+                $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
+                if(mysqli_multi_query($con, $query)){
                     $_SESSION['success'] = 'Updated An Existing User Successfully';
                     die("<script>window.location = 'Profile'; window.reload();</script>");
                 }
@@ -118,11 +118,11 @@
                                             WHERE id='$u_id';";
                             }
 
-                            $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+                            $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
                             
                             if(mysqli_multi_query($con, $query)){
                                 $_SESSION['success'] = 'Updated An Existing User Successfully';
-                                die("<script>window.location = 'User?i_id=$i_id'; window.reload();</script>");
+                                die("<script>window.location = 'User?u_id=$u_id'; window.reload();</script>");
                             }
                             else{
                                 $_SESSION['error'] = 'Failed To Updated An Existing User';
@@ -150,7 +150,7 @@
             $u_id= $_GET['u_id'];
             $notfiy = 'Has Deleted A Client';
             $query = "DELETE FROM `users` WHERE id='$u_id';";
-            $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+            $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A User Successfully';
@@ -178,7 +178,7 @@
                 $notfiy = 'Has Created A New User';
                 $query = " INSERT INTO users (fname, lname, email, phone_no, password, code, status, role, curr_status, notes)
                 VALUES ('$fname_user', '$lname_user', '$email_user', '$phone_no_user','$password_user','0','verified', '$role_user', '$curr_status_user', '$notes_user');";
-                $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+                $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
 
                 if(mysqli_multi_query($con, $query)){
                     $_SESSION['success'] = 'Created A New User Successfully';

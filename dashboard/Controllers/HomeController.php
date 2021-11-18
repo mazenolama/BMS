@@ -97,7 +97,7 @@
 
     /***************         Get Notifications             ***************/
         
-        $query = "SELECT * FROM `notifications` WHERE status='unread' ORDER BY id DESC";
+        $query = "SELECT * FROM `notifications` ORDER BY id DESC";
         $execute = mysqli_query($con, $query);
         $fetch_notify = array();
         if($execute || isset($_SESSION['success'])){
@@ -105,6 +105,24 @@
                 while($fetch = $execute->fetch_assoc()) {
                     $fetch_notify [] =$fetch;
                 }
+            }
+            else{
+                $errors['notifications'] = 'No New Notifications To Show';
+            }
+        }
+        else{
+            $errors['notifications'] = 'Failed To Get Info. From Database';
+        }
+
+        $q = "SELECT users FROM `notifications` WHERE users=2";
+        $exe = mysqli_query($con, $q);
+        $u = array();
+        if($exe || isset($_SESSION['success'])){
+            if(mysqli_num_rows($exe) > 0){
+                while($fetch = $exe->fetch_assoc()) {
+                    $u =$fetch;
+                }
+                var_dump($u['users']);
             }
             else{
                 $errors['notifications'] = 'No New Notifications To Show';
@@ -126,8 +144,7 @@
 
     /**************         Mark As Read Function          ***************/
         if(array_key_exists('flush', $_POST)){
-            $con =  dbConnection();
-            $query ="UPDATE notifications SET status='read' WHERE status='unread'";
+            $query ="UPDATE notifications SET status='read' WHERE user_id='$user_id'";
             mysqli_query($con, $query);
             die("<script>window.location = '../dashboard'; window.reload();</script>");
         }

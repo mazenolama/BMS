@@ -23,7 +23,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="label-title">Client Name : </label>
                                             <select class="form-control select2" name="client_id">
-                                                <option value="<?= $fetch_client['clientID']?>" disabled selected><?=$fetch_client['fname'].' '. $fetch_client['lname'] ?></option>
+                                                <option value="<?= $fetch_client['id']?>" selected><?=$fetch_client['fname'].' '. $fetch_client['lname'] ?></option>
                                             </select>
                                         </div>
                                     </div>
@@ -133,10 +133,10 @@
                                     </div>
                                 </fieldset>
                                 
-                                <input type="text" name="amount" id="amount" style="opacity: 0;" />
-                                <input type="text" name="tax" class="tax" style="opacity: 0;" />
-                                <input type="text" name="discount" style="opacity: 0;" />
-                                <input type="text" name="total" style="opacity: 0;" />
+                                <input type="text" name="amount" id="amount" value="<?=$fetch_invoice['amount'];?>" style="opacity: 0;" />
+                                <input type="text" name="tax" class="tax" value="<?=$fetch_invoice['tax'];?>" style="opacity: 0;" />
+                                <input type="text" name="discount" value="<?=$fetch_invoice['discount'];?>" style="opacity: 0;" />
+                                <input type="text" name="total" value="<?=$fetch_invoice['total'];?>" style="opacity: 0;" />
 
                                 <div class="card-footer text-right">
                                     <button class="btn btn-danger" type="submit" name="discard">Discard</button>

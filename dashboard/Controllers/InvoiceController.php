@@ -7,7 +7,7 @@
     $invoice_status = array("Unpaid","Paid","Part-Paid");
 
     /***************       Get id,fname,lname Clients       ***************/
-        if( $path =='Create-Invoice' ||  $path =='Edit-Invoice' ){
+        if( $path =='Create-Invoice' ){
             $query = "SELECT id,fname,lname FROM `clients` WHERE 1 ORDER BY created_at DESC";
             $execute = mysqli_query($con, $query);
             $fetch_clients = array();
@@ -45,9 +45,9 @@
 
             if(!empty($title) && !empty($amount) && !empty($total)){
 
-                $query = " INSERT INTO invoices (title, amount, tax, tax_prg, discount, discount_prg, total, invoice_status, created_date, payment_date, note, clientID)
-                VALUES ('$title', '$amount', '$tax','$tax_prg', '$discount','$discount_prg','$total','$invoice_status','$created_date', '$payment_date', '$note', '$clientID');";
-                $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+                $query = " INSERT INTO invoices (title, amount, tax, tax_prg, discount, discount_prg, total, invoice_status, email_status, created_date, payment_date, note, clientID)
+                VALUES ('$title', '$amount', '$tax','$tax_prg', '$discount','$discount_prg','$total','$invoice_status','0','$created_date', '$payment_date', '$note', '$clientID');";
+                $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
 
                 if(mysqli_multi_query($con, $query)){
                     $_SESSION['success'] = 'Created A New Invoice Successfully';
@@ -81,11 +81,11 @@
 
             $q = "SELECT fname,lname,email FROM `clients` WHERE id= '$clientID'";
             $exe = mysqli_query($con, $q);
-            $fetch_client = array();
+            $client_info = array();
             if($exe){
                 if(mysqli_num_rows($exe) > 0){
                     while($fetch = $exe->fetch_assoc()) {
-                        $fetch_client = $fetch;
+                        $client_info = $fetch;
                     }
                 }
             }
@@ -93,13 +93,14 @@
 
           if(!empty($title) && !empty($amount) && !empty($total))
             {
-                $query = " INSERT INTO invoices (title, amount, tax, tax_prg, discount, discount_prg, total, invoice_status, created_date, payment_date, note, clientID)
-                VALUES ('$title', '$amount', '$tax','$tax_prg', '$discount','$discount_prg','$total','$invoice_status','$created_date', '$payment_date', '$note', '$clientID');";
-                $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
-
+                $query = " INSERT INTO invoices (title, amount, tax, tax_prg, discount, discount_prg, total, invoice_status, email_status ,created_date, payment_date, note, clientID)
+                VALUES ('$title', '$amount', '$tax','$tax_prg', '$discount','$discount_prg','$total','$invoice_status','1','$created_date', '$payment_date', '$note', '$clientID');";
+                $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
+                $about = "Monthly Invoice";
+                $type = 'create'; 
+                $i_id = null;
                 if(mysqli_multi_query($con, $query)){
-
-                    email_new_invoice($fetch_client['fname'],$fetch_client['lname'],$fetch_client['email'],$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total,$payment_date,$created_date,$note);
+                    email_invoice($i_id, $type,$about,$client_info['fname'],$client_info['lname'],$client_info['email'],$created_date,$payment_date,$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total,$payment_date,$created_date);
                 }
                 else{
                     $_SESSION['error'] = 'Failed To Create A New Invoice';
@@ -188,9 +189,9 @@
 
                 $datetime = date_create()->format('Y-m-d H:i:s');
 
-                $query  = " UPDATE invoices SET title='$title',amount='$amount',tax='$tax',tax_prg='$tax_prg',discount='$discount',discount_prg='$discount_prg',total='$total',invoice_status='$invoice_status',created_date='$created_date',payment_date='$payment_date',note='$note', updated_at='$datetime' WHERE id='$i_id';";
+                $query  = " UPDATE invoices SET title='$title',amount='$amount',tax='$tax',tax_prg='$tax_prg',discount='$discount',discount_prg='$discount_prg',total='$total',invoice_status='$invoice_status',email_status='0',created_date='$created_date',payment_date='$payment_date',note='$note', updated_at='$datetime' WHERE id='$i_id';";
                 
-                $query .= "INSERT INTO notifications (notify, userName) VALUES ('$notfiy', '$full_name')";
+                $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
                 
                 if(mysqli_multi_query($con, $query)){
                     $_SESSION['success'] = 'Updated An Existing Invoice Successfully';
@@ -206,13 +207,66 @@
         }
     /***************           Update Invoice              ***************/
 
+    /***************   Update Invoice And Send Email       ***************/
+        if(isset($_POST['update-&-send-invoice'])){
+
+            $i_id= $_GET['i_id'];
+            $title = mysqli_real_escape_string($con,$_POST['title']);
+            $amount = mysqli_real_escape_string($con,$_POST['amount']);
+            $tax = mysqli_real_escape_string($con,$_POST['tax']);
+            $tax_prg = mysqli_real_escape_string($con,$_POST['tax_prg']);
+            $discount = mysqli_real_escape_string($con,$_POST['discount']);
+            $discount_prg = mysqli_real_escape_string($con,$_POST['discount_prg']);
+            $total = mysqli_real_escape_string($con,$_POST['total']);
+            $invoice_status = mysqli_real_escape_string($con,$_POST['picked_status']);
+            $created_date = mysqli_real_escape_string($con,$_POST['created_date']);
+            $payment_date = mysqli_real_escape_string($con,$_POST['payment_date']);
+            $clientID = mysqli_real_escape_string($con,$_POST['client_id']);
+            $notes = mysqli_real_escape_string($con,$_POST['notes']);  
+            
+            $q = "SELECT fname,lname,email FROM clients WHERE id= '$clientID'";
+            $client_info = array();
+            if($exe = mysqli_query($con, $q)){
+                if(mysqli_num_rows($exe) > 0){
+                    while($fetch = $exe->fetch_assoc()) {
+                        $client_info = $fetch;
+                    }
+                }
+            }
+
+            $notfiy = 'Has Updated An Existing Invoice';
+            
+            if(!empty($title) && !empty($total) && !empty($amount)){
+
+                $datetime = date_create()->format('Y-m-d H:i:s');
+
+                $query  = " UPDATE invoices SET title='$title',amount='$amount',tax='$tax',tax_prg='$tax_prg',discount='$discount',discount_prg='$discount_prg',total='$total',invoice_status='$invoice_status',email_status='1',created_date='$created_date',payment_date='$payment_date',note='$note', updated_at='$datetime' WHERE id='$i_id';";
+                
+                $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
+                $about = "Updated Monthly Invoice";
+                $type = 'update'; 
+                if(mysqli_multi_query($con, $query)){
+                    email_invoice($i_id, $type,$about,$client_info['fname'],$client_info['lname'],$client_info['email'],$created_date,$payment_date,$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total,$payment_date,$created_date);
+                }
+                else{
+                    $_SESSION['error'] = 'Failed To Updated An Existing Invoice';
+                }
+            }
+            else{
+                $_SESSION['error'] = 'Please Make Sure You Filled The Required Fields';
+            }
+        }
+    /***************   Update Invoice And Send Email       ***************/
+
     /***************           Delete Invoice              ***************/
         if(isset($_GET['action']) && $_GET['action']== 'delete-invoice')
         {
             $u_id= $_GET['i_id'];
             $notfiy = 'Has Deleted A Client';
             $query = "DELETE FROM `invoices` WHERE id='$i_id';";
-            $query .="INSERT INTO notifications (notify, status , user_id , userName) VALUES ('$notfiy', 'unread' ,'$user_id', '$full_name')";
+
+            $query .= "INSERT INTO notifications (notify,user_id, status, userName) VALUES ('$notfiy','$user_id','unread' ,'$full_name')";
+            
             $execute = mysqli_multi_query($con, $query);
             if($execute){
                 $_SESSION['success'] = 'Deleted A Invoice Successfully';
