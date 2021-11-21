@@ -97,7 +97,7 @@
 
     /***************         Get Notifications             ***************/
         
-        $query = "SELECT * FROM `notifications` ORDER BY id DESC";
+        $query = "SELECT * FROM `notifications` WHERE status='unread' ORDER BY id DESC";
         $execute = mysqli_query($con, $query);
         $fetch_notify = array();
         if($execute || isset($_SESSION['success'])){
