@@ -6,4 +6,4 @@ RewriteRule ^ /%1 [NE,L,R]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteRule ^(.+)$ /bills/dashboard/index.php/$1 [L]
-RewriteRule ^(.+)$ /dashboard/index.php/$1 [L]
+#RewriteRule ^(.+)$ /dashboard/index.php/$1 [L]
