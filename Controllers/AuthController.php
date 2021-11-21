@@ -151,7 +151,6 @@ if(isset($_POST['signup'])){
                     $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email";
                     $_SESSION['email'] = $email;
                     header('location: reset-code');
-                    exit();
 
                 }else{
                     $_SESSION['error'] = "Failed while sending code!";
