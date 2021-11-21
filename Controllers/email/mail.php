@@ -18,6 +18,7 @@
       }
       else{
         $_SESSION['error']='unable to locate template file';
+        $status = false;
       }
 
       // search and replace for predefined variables, like SITE_ADDR, {NAME}, {lOGO}, {CUSTOM_URL} etc
