@@ -126,7 +126,7 @@
 
     /**************         Mark As Read Function          ***************/
         if(array_key_exists('flush', $_POST)){
-            $query ="UPDATE notifications SET status='read' WHERE user_id='$user_id'";
+            $query ="UPDATE notifications SET status='read' ";
             mysqli_query($con, $query);
             die("<script>window.location = '../dashboard'; window.reload();</script>");
         }
