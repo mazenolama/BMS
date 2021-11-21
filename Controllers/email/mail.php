@@ -1,7 +1,6 @@
 <?php
   
   /************************* Create New User ************************/
-
     function email_reset_user($fname_user,$lname_user,$email_user,$msg,$otp){
       $subject =  " Hadef Bills " . $msg;
       $user_template_file= "Controllers/email/userTemp.php";
@@ -37,7 +36,7 @@
         return true;
       }
       else{
-       return false;
+        return false;
       }
     }
   /************************* Create New User ************************/
