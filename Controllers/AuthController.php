@@ -138,6 +138,7 @@ $path = basename($_SERVER['REQUEST_URI']);
             while($fetch = $execute->fetch_assoc()) {
                 $fetch_user = $fetch;
             }
+
             $otp = rand(999999, 111111);
             $query = "UPDATE users SET code = $otp WHERE email = '$email'";
             $execute =  mysqli_query($con, $query);
@@ -149,8 +150,8 @@ $path = basename($_SERVER['REQUEST_URI']);
                 $user_template_file= "Controllers/email/userTemp.php";
                 
                 $swap_var = array(
-                    "{USER_FIRST_NAME}" => $fname_user,
-                    "{USER_LAST_NAME}" => $lname_user,
+                    "{USER_FIRST_NAME}" => $fetch_user['fname'],
+                    "{USER_LAST_NAME}" => $fetch_user['lname'],
                     "{MSG}" => $msg,
                     "{OTP}" => $otp      
                 );
@@ -174,12 +175,12 @@ $path = basename($_SERVER['REQUEST_URI']);
                                 'MIME-Version: 1.0' . "\r\n" .
                                 'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .
                                 'X-Mailer: PHP/' . phpversion();
-                $execute = mail($email, $subject, $message, $headers);
 
-                if($execute)
+                if(mail($email, $subject, $message, $headers))
                 {
                     $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email";
                     $_SESSION['email'] = $email;
+                    header('location: reset-code');
                 }
                 else{
                     $_SESSION['error'] = "Failed while sending code!";
