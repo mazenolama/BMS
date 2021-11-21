@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label class="label-title" style="font-family: cursive; font-size: 1.3rem !important;">It's An Accounting Software To Manage Clients Bills</label>
+                                    <label class="label-title" style="font-family: cursive; font-size: 1.1rem !important;">It's An Accounting Software To Manage Clients Bills</label>
                                 </div>
                                 <div class="col-md-6" style="display: flex;justify-content: flex-end;">
                                    <img src="assets/img/logo.png" height="110" width="110" alt="logo.png">
