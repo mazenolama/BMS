@@ -144,7 +144,9 @@ $path = basename($_SERVER['REQUEST_URI']);
             
             if($execute){
                 $msg = "Account Resest (OTP) code ";
-                if(email_reset_user($fetch_user['fname'],$fetch_user['lname'],$email,$msg,$otp) == true)
+                $status =null;
+                email_reset_user($fetch_user['fname'],$fetch_user['lname'],$email,$msg,$otp,$status);
+                if($status == true)
                 {
                     $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email_user";
                     $_SESSION['email'] = $email_user;
