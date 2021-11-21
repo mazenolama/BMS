@@ -2,7 +2,6 @@
     
     require_once("database/Database.php");
     $con = dbConnection();
-    $errors = array();
     
     /***************         Get All Clients               ***************/
         if(  $path  =='Clients' ||  $path == 'Dashboard'){
@@ -16,11 +15,11 @@
                     }
                 }
                 else{
-                    $errors['get_clients'] = 'No Data To Show';
+                    $_SESSION['error'] = 'No Data To Show';
                 }
             }
             else{
-                $errors['get_clients'] = 'Failed To Get Info. From Database';
+                $_SESSION['error'] = 'Failed To Get Info. From Database';
             }
         }
 
@@ -97,11 +96,11 @@
                     }
                 }
                 else{
-                    $errors['get_client'] = 'No Data To Show For This Client';
+                    $_SESSION['error'] = 'No Data To Show For This Client';
                 }
             }
             else{
-                $errors['get_client'] = 'Failed To Get Info. From Database';
+                $_SESSION['error'] = 'Failed To Get Info. From Database';
             }
         }
     /***************        Update Existing Client              ***************/

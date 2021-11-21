@@ -114,24 +114,6 @@
             $errors['notifications'] = 'Failed To Get Info. From Database';
         }
 
-        $q = "SELECT users FROM `notifications` WHERE users=2";
-        $exe = mysqli_query($con, $q);
-        $u = array();
-        if($exe || isset($_SESSION['success'])){
-            if(mysqli_num_rows($exe) > 0){
-                while($fetch = $exe->fetch_assoc()) {
-                    $u =$fetch;
-                }
-                var_dump($u['users']);
-            }
-            else{
-                $errors['notifications'] = 'No New Notifications To Show';
-            }
-        }
-        else{
-            $errors['notifications'] = 'Failed To Get Info. From Database';
-        }
-
     /***************         Get Notifications             ***************/
 
     /***************                Logout                 ***************/    
@@ -180,7 +162,9 @@
             return $string ? implode(', ', $string) . ' ago' : 'just now';
         }
     /*************      Calculate Total Time Ago Function  ***************/
-    if(isset($_POST['discard']))
+    if(isset($_POST['discard'])){
         die("<script>window.location = '../dashboard';</script>");
+    }
+    
 
 ?>

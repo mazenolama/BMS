@@ -13,20 +13,8 @@
                     </div>
                     <div class="card-body">
                         <p class="text-muted">We'll email you a One Time Password (OTP) to reset your password</p>
-                        <form action="index.php?page=forgot-password" method="POST" autocomplete="">
-                            <?php
-                                if(count($errors) > 0){
-                                    ?>
-                                    <div class="alert alert-danger text-center">
-                                        <?php 
-                                            foreach($errors as $error){
-                                                echo $error;
-                                            }
-                                        ?>
-                                    </div>
-                                    <?php
-                                }
-                            ?>
+                        <form action="forgot-password" method="POST" autocomplete="">
+
                             <div class="form-group">
                                 <label for="email">Enter your email address</label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1" placeholder="something@example.com" value="<?php echo $email ?>" required autofocus>

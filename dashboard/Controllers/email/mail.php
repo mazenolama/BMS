@@ -1,13 +1,35 @@
 <?php
 
+  /************************* Get Company Info ***********************/
+    $query = "SELECT * FROM company WHERE 1 ";
+    $fetch_company = array();
+    if($execute = mysqli_query($con,$query))
+    {
+      if(mysqli_num_rows($execute) > 0){
+        while($fetch = $execute->fetch_assoc()) {
+          $fetch_company = $fetch;
+        }
+      }
+      else{
+        $_SESSION['error'] = 'No Data To Show';
+      }
+    }
+    else{
+      $_SESSION['error'] = "Failed To Get Info. From Database";
+    }
+  /************************* Get Company Info ***********************/
+    
   /************************* Create New User ************************/
 
     function email_new_user($fname_user,$lname_user,$email_user,$password_user,$full_name){
-      $subject = "Hadef Information Technology Co. invites you to join their Hadef Bills account";
-      $hadefEmail = "olamamazen@gmail.com";
+      $subject =  $GLOBALS['fetch_company']['name'] . " invites you to join their Hadef Bills account";
       $user_template_file= "Controllers/email/userTemp.php";
       
       $swap_var = array(
+        "{COMPANY_NAME}" => $GLOBALS['fetch_company']['name'],
+        "{COMPANY_ADDRESS}" => $GLOBALS['fetch_company']['address'],
+        "{COMPANY_PHONE}" => $GLOBALS['fetch_company']['phone'],
+
         "{USER_FIRST_NAME}" => $fname_user,
         "{USER_LAST_NAME}" => $lname_user,
         "{PASSWORD}" => $password_user,
@@ -29,7 +51,7 @@
           $message = str_replace($key, $swap_var[$key], $message);
       }
 
-      $userHeaders = 'From: '.$full_name.' <'.$hadefEmail.'>' . "\r\n" .
+      $userHeaders = 'From: Hadef Bills <'.$GLOBALS['fetch_company']['email'].'>' . "\r\n" .
                       'Bcc: mazen.ziad@hadefit.com' . "\r\n" .
                       'MIME-Version: 1.0' . "\r\n" .
                       'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .
@@ -50,12 +72,15 @@
   /************************* Send Email Invoice ************************/
     function email_invoice($i_id, $type, $about,$client_fname,$client_lname,$client_email,$created_date,$payment_date,$title,$amount,$tax,$tax_prg,$discount,$discount_prg,$total){
       $subTotal =null;
-      $subject = "Hadef Information Technology Co. " . $about;
+      $subject =  $GLOBALS['fetch_company']['name'] . $about;
      
-      $hadefEmail = "mazen.olama00@gmail.com";
       $clinet_template_file= "Controllers/email/invoiceTemp.php";
       $subTotal = $amount;
       $swap_var = array(
+        "{COMPANY_NAME}" => $GLOBALS['fetch_company']['name'],
+        "{COMPANY_ADDRESS}" => $GLOBALS['fetch_company']['address'],
+        "{COMPANY_PHONE}" => $GLOBALS['fetch_company']['phone'],
+
         "{TITTLE}" => $about,
         "{CLIENT_FIRST_NAME}" => $client_fname,
         "{CLIENT_LAST_NAME}" => $client_lname,
@@ -85,7 +110,7 @@
           $message = str_replace($key, $swap_var[$key], $message);
       }
 
-      $clientHeaders = 'From: Hadef IT <'.$hadefEmail.'>' . "\r\n" .
+      $clientHeaders = 'From: Hadef IT <'.$GLOBALS['fetch_company']['email'].'>' . "\r\n" .
                       'Bcc: mazen.ziad@hadefit.com' . "\r\n" .
                       'MIME-Version: 1.0' . "\r\n" .
                       'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .

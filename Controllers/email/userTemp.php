@@ -45,7 +45,6 @@
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:22px;text-align:left;color:#555;">
 													Dear <strong>{USER_FIRST_NAME} {USER_LAST_NAME}</strong>,<br>
 													</br> 
-													<p style="color: #000;">We use <strong>Hadef Bills</strong> to manage our clients bills in {COMPANY_NAME}, and we will love to invite you to join our <strong>Hadef Bills</strong> account. </p>
 												</div>
 											</td>
 										</tr>
@@ -53,9 +52,7 @@
 										<tr>
 											<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;text-align:left;color:#525252;">
-												<strong>Your Credentials:</strong>
-													<br><strong>Email: {EMAIL}</strong><br>
-													<strong>Password: {PASSWORD}</strong><br>                                        
+													Your {MSG} is: <strong>{OTP}</strong><br>                                       
 												</div>
 											</td>
 										</tr>
@@ -71,7 +68,7 @@
 											<td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 												<div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;text-align:left;color:#525252;">
 													<strong>Best regards,</strong><br>
-													<br> <strong>{FULL_NAME},<br><br> {COMPANY_NAME}.</strong><br>
+													<br> <strong>Support Team, Hadef Bills.</strong><br>
 												</div>
 											</td>
 										</tr>
@@ -104,7 +101,7 @@
                                                         <tr>
                                                             <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                                                 <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-																 {COMPANY_PHONE} <br><br> {COMPANY_ADDRESS}
+																(+966)59 405 8361 , info@hadefit.com <br><br> Office # 24, 6959 King Abdul Aziz Branch Rd, Riyadh 12467, KSA
                                                                 </div>
                                                             </td>
                                                         </tr>

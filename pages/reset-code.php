@@ -11,30 +11,8 @@
                         <h3 style="font-family: cursive;font-size: 1.4rem;color: #121212eb;">Hadef Bills</h3>
                     </div>
                     <div class="card-body">
-                        <?php 
-                            if(isset($_SESSION['info'])){
-                                ?>
-                                <div class="alert alert-success text-center" style="padding: 0.4rem 0.4rem">
-                                    <?php echo $_SESSION['info']; ?>
-                                </div>
-                                <?php
-                            }
-                            ?>
-                            <?php
-                            if(count($errors) > 0){
-                                ?>
-                                <div class="alert alert-danger text-center">
-                                    <?php
-                                    foreach($errors as $showerror){
-                                        echo $showerror;
-                                    }
-                                    ?>
-                                </div>
-                                <?php
-                            }
-                            ?>
                         <p class="text-muted">Please enter the 6-digit verification code we sent via Email:</p>
-                        <form action="index.php?page=reset-code" method="POST" autocomplete="">
+                        <form action="reset-code" method="POST" autocomplete="">
                             <div class="d-flex flex-row mt-5">
                                 <input type="number" name="otp-1"class="form-control otp" autofocus="">
                                 <input type="number" name="otp-2" class="form-control otp">

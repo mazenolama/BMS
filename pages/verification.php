@@ -34,7 +34,7 @@
                             }
                             ?>
                         <p class="text-muted">Please enter the 6-digit verification code we sent via Email:</p>
-                        <form action="index.php?page=verification" method="POST" autocomplete="off">
+                        <form action="verification" method="POST" autocomplete="off">
                             <div class="d-flex flex-row mt-5">
                                 <input type="number" name="otp-1"class="form-control otp" autofocus="">
                                 <input type="number" name="otp-2" class="form-control otp">

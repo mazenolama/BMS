@@ -8,11 +8,14 @@
                     <h4>Multiple Upload</h4>
                   </div>
                   <div class="card-body">
-                    <form action="#" class="dropzone" id="mydropzone">
-                      <div class="fallback">
-                        <input name="file" type="file" multiple />
-                      </div>
-                    </form>
+                  <?php
+
+                    echo $fetch_company['name'] .'<br>';
+                    echo $fetch_company['email'] .'<br>';
+                    echo $fetch_company['address'] .'<br>';
+                    echo $fetch_company['phone'] .'<br>';
+
+                    ?>
                   </div>
                 </div>
               </div>

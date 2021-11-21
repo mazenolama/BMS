@@ -12,7 +12,7 @@
                         <h3 style="font-family: cursive;font-size: 1.4rem;color: #121212eb;">Hadef Bills</h3>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="index.php?page=signup" autocomplete="">
+                        <form method="POST" action="signup" autocomplete="">
                         <?php 
                             if(count($errors) > 0) { ?>
                                 <div class="alert alert-danger text-center">

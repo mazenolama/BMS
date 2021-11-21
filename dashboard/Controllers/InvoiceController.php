@@ -3,7 +3,6 @@
     require_once("database/Database.php");
     require_once("Controllers/email/mail.php");
     $con = dbConnection();
-    $errors = array();
     $invoice_status = array("Unpaid","Paid","Part-Paid");
 
     /***************       Get id,fname,lname Clients       ***************/
@@ -18,11 +17,11 @@
                     }
                 }
                 else{
-                    $errors['get_clients'] = 'No Data To Show';
+                    $_SESSION['error'] = 'No Data To Show';
                 }
             }
             else{
-                $errors['get_clients'] = 'Failed To Get Info. From Database';
+                $_SESSION['error'] = 'Failed To Get Info. From Database';
             }
         }
     /***************       Get id,fname,lname Clients       ***************/
@@ -129,11 +128,11 @@
                     }
                 }
                 else{
-                    $errors['get_invoices'] = 'No Data To Show';
+                    $_SESSION['error'] = 'No Data To Show';
                 }
             }
             else{
-                $errors['get_invoices'] = 'Failed To Get Info. From Database';
+                $_SESSION['error'] = 'Failed To Get Info. From Database';
             }
         }
     /***************          Get All Invoices             ***************/
@@ -159,11 +158,11 @@
                             $fetch_client = $execute->fetch_assoc();
                 }
                 else{
-                    $errors['get_invoice'] = 'No Data To Show For This Invoice';
+                    $_SESSION['error'] = 'No Data To Show For This Invoice';
                 }
             }
             else{
-                $errors['get_invoice'] = 'Failed To Get Info. From Database';
+                $_SESSION['error'] = 'Failed To Get Info. From Database';
             }
         }
     /***************          Get Only Invoice             ***************/

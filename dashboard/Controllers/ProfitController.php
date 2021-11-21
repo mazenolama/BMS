@@ -2,9 +2,7 @@
     require_once("database/Database.php");
     require_once("Controllers/email/mail.php");
     $con = dbConnection();
-    $errors = array();
-
-
+    
     /****************         Get Invoices Status           ****************/
         if($path == 'Dashboard' || empty($path))
         {

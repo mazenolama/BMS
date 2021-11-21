@@ -45,7 +45,7 @@
 										<tr>
                                         <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:bold;line-height:22px;text-align:center;color:#525252;">
-                                                Hadef Information Technology Co.
+                                                {COMPANY_NAME}
                                                 <p style="font-size: 20px;">{TITTLE}</p>
                                             </div>
                                         </td>
@@ -69,7 +69,7 @@
                                                 <tr style="text-align:left;">
                                                     <th style="padding: 0 15px 10px 0;">Payment Date:</th>
                                                     <th style="padding: 0 15px;"></th>
-                                                    <th style="padding: 0 0 0 14px;" align="right">{PAYMENT_DATE}</th>
+                                                    <th style="padding: 0 0 0 14px; color:red;" align="right" >{PAYMENT_DATE}</th>
                                                 </tr>
                                             </table>
                                         </td>
@@ -123,7 +123,7 @@
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;text-align:left;color:#525252;">
                                                 <strong>Best regards,</strong><br>
-                                                <br> <strong>Hadef IT Co.</strong><br>
+                                                <br> <strong>{COMPANY_NAME}</strong><br>
                                             </div>
                                         </td>
                                     </tr>
@@ -157,7 +157,7 @@
                                                         <tr>
                                                             <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                                                 <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:300;line-height:1;text-align:center;color:#575757;">
-                                                                  (+966)59 405 8361 <br><br> 24, 6959 King Abdul Aziz Branch Rd, Riyadh 12467, KSA
+                                                                 <br> {COMPANY_PHONE} <br><br> {COMPANY_ADDRESS}
                                                                 </div>
                                                             </td>
                                                         </tr>
