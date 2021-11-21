@@ -149,7 +149,6 @@ $path = basename($_SERVER['REQUEST_URI']);
                     $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email_user";
                     $_SESSION['email'] = $email_user;
                     header('location: reset-code');
-                    exit();
                 }
                 else{
                     $_SESSION['error'] = "Failed while sending code!";
