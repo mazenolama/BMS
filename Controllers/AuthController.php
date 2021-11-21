@@ -106,7 +106,8 @@ if(empty($path) || $path =='bills' ){
                     $_SESSION['phone_no'] = $fetch['phone_no'];
                     $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
-                    header('location: ./dashboard/');
+
+                    header('location: dashboard/');
 
                     }else{
                         $_SESSION['error'] = "It's look like your ".$email." haven't verified yet";
