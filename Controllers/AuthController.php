@@ -9,6 +9,10 @@ $errors = array();
 
 $path = basename($_SERVER['REQUEST_URI']);
 
+$pageName = $path;
+if(empty($path) || $path =='bills' )
+    $pageName='Login';
+
     /*******************       Sing Up Controllers     ********************/
 
         /*******************       Sing Up       *******************/
@@ -267,7 +271,7 @@ $path = basename($_SERVER['REQUEST_URI']);
         if($email == false)
             header('Location: login');
     }
-    
+
     /*if($path =='password-changed')
     {
         if($_SESSION['info'] == false){
