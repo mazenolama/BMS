@@ -14,7 +14,13 @@ require_once('./Controllers/AuthController.php');
         <div class="loader"></div>
         <!---------------- Main Content ----------------->
             <div class="app bg_one" >
-                <?php include ('./pages/'. $path . '.php');?>
+                <?php 
+                    if(empty($path) || $path =='bills' )
+                        include ('./pages/login.php');
+                    else
+                        include ('./pages/'. $path . '.php');
+
+                ?>
             </div>
         <!---------------- Main Content ----------------->
         <?php include_once('./helper/scripts.php'); ?>
