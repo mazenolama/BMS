@@ -36,10 +36,11 @@
       if(mail($email_user, $subject, $message, $userHeaders)){
         $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email_user";
         $_SESSION['email'] = $email_user;
-        header('location: reset-code');
+        return true;
       }
       else{
         $_SESSION['error'] = "Failed while sending code!";
+        return false;
       }
     }
   /************************* Create New User ************************/
