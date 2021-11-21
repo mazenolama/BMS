@@ -9,9 +9,15 @@ $errors = array();
 
 $path = basename($_SERVER['REQUEST_URI']);
 
-$pageName = $path;
-if(empty($path) || $path =='bills' )
-    $pageName='Login';
+    /*******************        Login Controllers      ********************/
+        $pageName = $path;
+        if(empty($path) || $path =='bills' )
+            $pageName='Login';
+            
+        $pageName = str_replace("-"," ",$pageName);
+        $pageName = ucfirst($pageName);
+    /*******************        Login Controllers      ********************/
+
 
     /*******************       Sing Up Controllers     ********************/
 
