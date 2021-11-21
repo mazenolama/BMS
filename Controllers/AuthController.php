@@ -12,7 +12,7 @@ $path = basename($_SERVER['REQUEST_URI']);
     /*******************        Login Controllers      ********************/
         $pageName = $path;
         if(empty($path) || $path =='bills' )
-            $pageName='Login';
+            $pageName='login';
             
         $pageName = str_replace("-"," ",$pageName);
         $pageName = ucfirst($pageName);
