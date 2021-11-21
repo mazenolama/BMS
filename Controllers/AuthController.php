@@ -150,7 +150,7 @@ if(isset($_POST['signup'])){
                 if(email_reset_user($fetch_user['fname'],$fetch_user['lname'],$email,$msg,$otp)){
                     $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email";
                     $_SESSION['email'] = $email;
-                    die("<script>window.location = 'reset-code';</script>");
+                    exit("<script>window.location = 'reset-code';</script>");
                 }else{
                     $_SESSION['error'] = "Failed while sending code!";
                 }
