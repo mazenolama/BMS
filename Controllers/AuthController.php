@@ -147,13 +147,7 @@ if(isset($_POST['signup'])){
             
             if($execute){
                 $msg = "Account Resest (OTP) code ";
-                if(email_reset_user($fetch_user['fname'],$fetch_user['lname'],$email,$msg,$otp)){
-                    $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email";
-                    $_SESSION['email'] = $email;
-                    exit("<script>window.location = 'reset-code';</script>");
-                }else{
-                    $_SESSION['error'] = "Failed while sending code!";
-                }
+                email_reset_user($fetch_user['fname'],$fetch_user['lname'],$email,$msg,$otp);
             }else{
                 $_SESSION['error'] = "Something went wrong!";
             }

@@ -33,10 +33,15 @@
                       'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .
                       'X-Mailer: PHP/' . phpversion();
 
-      if(mail($email_user, $subject, $message, $userHeaders))
-       return true;
-      else
-        return false;
+      if(mail($email_user, $subject, $message, $userHeaders)){
+        $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email_user";
+        $_SESSION['email'] = $email_user;
+        header('location: reset-code');
+        exit();
+      }
+      else{
+        $_SESSION['error'] = "Failed while sending code!";
+      }
     }
   /************************* Create New User ************************/
 
