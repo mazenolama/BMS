@@ -231,6 +231,7 @@ $path = basename($_SERVER['REQUEST_URI']);
             if($run_query){
                 $_SESSION['info'] = "Your password changed. Now you can login with your new password.";
                 header('Location: ./');
+                exit();
             }else{
                 $_SESSION['error'] = "Failed to change your password!";
             }
