@@ -146,12 +146,12 @@ if(isset($_POST['signup'])){
             $execute =  mysqli_query($con, $query);
             
             if($execute){
-                $msg = "Account Reset (OTP) code ";
+                $msg = "Account Resest (OTP) code ";
                 if(email_reset_user($fetch_user['fname'],$fetch_user['lname'],$email,$msg,$otp)){
                     $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email";
                     $_SESSION['email'] = $email;
                     header('location: reset-code');
-
+                    die("<script>window.location = 'reset-code'; window.reload();</script>");
                 }else{
                     $_SESSION['error'] = "Failed while sending code!";
                 }
