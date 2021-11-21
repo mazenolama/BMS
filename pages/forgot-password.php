@@ -17,7 +17,7 @@
 
                             <div class="form-group">
                                 <label for="email">Enter your email address</label>
-                                <input id="email" type="email" class="form-control" name="email" tabindex="1" placeholder="something@example.com" value="<?php echo $email ?>" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" tabindex="1" placeholder="something@example.com"  required autofocus>
                             </div>
                             <div class="form-group">
                                 <button type="submit" name="check-email" class="btn btn-primary btn-lg btn-block" tabindex="4">

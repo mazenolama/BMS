@@ -5,55 +5,54 @@ $dotenv->load();
 session_start();
 $con = dbConnection();
 
-$errors = array();
-
 $path = basename($_SERVER['REQUEST_URI']);
-if(empty($path) || $path =='bills' )
+if(empty($path) || $path =='bills' ){
    $path = 'login';
-
-
-//if user signup button
-if(isset($_POST['signup'])){
-    $fname = mysqli_real_escape_string($con, $_POST['fname']);
-    $lname = mysqli_real_escape_string($con, $_POST['lname']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $phone_no = mysqli_real_escape_string($con, $_POST['phone_no']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-    if($password !== $cpassword){
-        $_SESSION['error'] = "Confirm password not matched!";
-    }
-    $email_check = "SELECT * FROM users WHERE email = '$email'";
-    $res = mysqli_query($con, $email_check);
-    if(mysqli_num_rows($res) > 0){
-        $_SESSION['error'] = "Email that you have entered is already exist!";
-        $errors['singup'] = "Email that you have entered is already exist!";
-    }
-    if(count($errors) === 0){
-        $encpass = password_hash($password, PASSWORD_ARGON2ID);
-        $code = rand(999999, 111111);
-        $status = "notverified";
-        $insert_data = "INSERT INTO users ( fname, lname, email, phone_no, password, code, status)
-                        values('$fname','$lname', '$email','$phone_no', '$encpass', '$code', '$status')";
-        $data_check = mysqli_query($con, $insert_data);
-        if($data_check){
-            $subject = "Email Verification Code";
-            $message = "Your verification code is $code";
-            if(mail($email, $subject, $message, $sender)){
-                $_SESSION['info'] = "We've sent a verification code to your email - $email";
-                $_SESSION['email'] = $email;
-                $_SESSION['password'] = $password;
-                header('location: verification');
-                exit();
-            }else{
-                $_SESSION['error'] = "Failed while sending code!";
-            }
-        }else{
-            $_SESSION['error'] = "Failed while inserting data into database!";
-        }
-    }
-
 }
+
+    //if user signup button
+    if(isset($_POST['signup'])){
+        $fname = mysqli_real_escape_string($con, $_POST['fname']);
+        $lname = mysqli_real_escape_string($con, $_POST['lname']);
+        $email = mysqli_real_escape_string($con, $_POST['email']);
+        $phone_no = mysqli_real_escape_string($con, $_POST['phone_no']);
+        $password = mysqli_real_escape_string($con, $_POST['password']);
+        $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+        if($password !== $cpassword){
+            $_SESSION['error'] = "Confirm password not matched!";
+        }
+        $email_check = "SELECT * FROM users WHERE email = '$email'";
+        $res = mysqli_query($con, $email_check);
+        if(mysqli_num_rows($res) > 0){
+            $_SESSION['error'] = "Email that you have entered is already exist!";
+            $error=true;
+        }
+        if($error==false){
+            $encpass = password_hash($password, PASSWORD_ARGON2ID);
+            $code = rand(999999, 111111);
+            $status = "notverified";
+            $insert_data = "INSERT INTO users ( fname, lname, email, phone_no, password, code, status)
+                            values('$fname','$lname', '$email','$phone_no', '$encpass', '$code', '$status')";
+            $data_check = mysqli_query($con, $insert_data);
+            if($data_check){
+                $subject = "Email Verification Code";
+                $message = "Your verification code is $code";
+                if(mail($email, $subject, $message, $sender)){
+                    $_SESSION['info'] = "We've sent a verification code to your email - $email";
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    header('location: verification');
+                    exit();
+                }else{
+                    $_SESSION['error'] = "Failed while sending code!";
+                }
+            }else{
+                $_SESSION['error'] = "Failed while inserting data into database!";
+            }
+        }
+
+    }
+
     //if user click verification code submit button
     if(isset($_POST['check'])){
         $otp = $_POST['otp-1'] .$_POST['otp-2'].$_POST['otp-3'].$_POST['otp-4'].$_POST['otp-5'].$_POST['otp-6'];
@@ -83,7 +82,6 @@ if(isset($_POST['signup'])){
 
     //if user click login 
     if(isset($_POST['login'])){
-
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $check_email = "SELECT * FROM users WHERE email = '$email'";
@@ -126,9 +124,7 @@ if(isset($_POST['signup'])){
         }else{
            $_SESSION['error'] = "It's look like you're not yet a member!";
         }
-    }
-     //if user click login with google
-     
+    }     
 
     //if user click continue button in forgot password form
     if(isset($_POST['check-email'])){
@@ -208,19 +204,6 @@ if(isset($_POST['signup'])){
     if(isset($_POST['login-now'])){
         header('Location: ./');
     }
-    if(isset($path)){
-        if($path =='verification' || $path =='reset-code' || $path =='new-password')
-        {
-            $email = $_SESSION['email'];
-            if($email == false)
-                header('Location: ./');
-        }
-        if($path =='password-changed')
-        {
-            if($_SESSION['info'] == false){
-                header('Location: ./');  
-            }
-        }
-    }
+
     
 ?>
