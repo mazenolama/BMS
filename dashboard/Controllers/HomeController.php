@@ -15,8 +15,9 @@
       $path = 'Dashboard';
 
     /***************    Checking Vaild Authorization       ***************/
-        $email = $_SESSION['email'];
-        if(!empty($email)){
+        
+        if(!empty($_SESSION['email'])){
+            $email = $_SESSION['email'];
             $sql = "SELECT * FROM users WHERE email = '$email'";
             $row = mysqli_query($con, $sql);
             if($row){
@@ -38,7 +39,7 @@
             }
         }
         else{
-            header('Location: https://bills.hadefit.com');
+            die("<script>window.location = 'https://bills.hadefit.com';</script>");
         }
     /***************    Checking Vaild Authorization       ***************/
 
