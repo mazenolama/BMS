@@ -174,12 +174,12 @@ $path = basename($_SERVER['REQUEST_URI']);
                                 'MIME-Version: 1.0' . "\r\n" .
                                 'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .
                                 'X-Mailer: PHP/' . phpversion();
-                $execute = mail($email_user, $subject, $message, $headers);
+                $execute = mail($email, $subject, $message, $headers);
 
                 if($execute)
                 {
-                    $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email_user";
-                    $_SESSION['email'] = $email_user;
+                    $_SESSION['info'] = "We've sent a reset code (OTP) to your email - $email";
+                    $_SESSION['email'] = $email;
                 }
                 else{
                     $_SESSION['error'] = "Failed while sending code!";
