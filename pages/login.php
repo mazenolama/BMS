@@ -11,28 +11,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="index.php" autocomplete="" class="needs-validation" novalidate="">
-                        <?php 
-                            if( isset($_SESSION['info']) == true && count($errors) == 0){
-                                ?>
-                                <div class="alert alert-success text-center">
-                                    <?php echo $_SESSION['info']; ?>
-                                </div>
-                                <?php
-                            }
-                            ?>
-                        <?php 
-                            if(count($errors) > 0) { ?>
-                                <div class="alert alert-danger text-center">
-                                    <?php
-                                    foreach($errors as $showerror){
-                                        echo $showerror;
-                                    }
-                                    ?>
-                                </div>
-                            <?php
-                            }
-                        ?>
+                    <form method="POST" autocomplete="" class="needs-validation" novalidate="">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
@@ -60,12 +39,11 @@
                             </button>
                         </div>
                     </form>
-                    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
 
-                    <div class="mt-5 text-muted text-center">
+                   <!-- <div class="mt-5 text-muted text-center">
                         Don't have a Hadef Bills account?
                         <a href="signup">Sign Up Now</a>
-                    </div>
+                    </div>-->
                 </div>
                
             </div>
