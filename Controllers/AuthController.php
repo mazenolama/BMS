@@ -19,14 +19,15 @@ $path = basename($_SERVER['REQUEST_URI']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
         if($password !== $cpassword){
-            $errors['password'] = "Confirm password not matched!";
+            $_SESSION['error'] = "Confirm password not matched!";
         }
         $email_check = "SELECT * FROM users WHERE email = '$email'";
         $res = mysqli_query($con, $email_check);
         if(mysqli_num_rows($res) > 0){
-            $errors['email'] = "Email that you have entered is already exist!";
+            $_SESSION['error'] = "Email that you have entered is already exist!";
+            $error=true;
         }
-        if(count($errors) === 0){
+        if($error==false){
             $encpass = password_hash($password, PASSWORD_ARGON2ID);
             $code = rand(999999, 111111);
             $status = "notverified";
@@ -36,19 +37,17 @@ $path = basename($_SERVER['REQUEST_URI']);
             if($data_check){
                 $subject = "Email Verification Code";
                 $message = "Your verification code is $code";
-                $sender = "From: Hadef IT <olamamazen@gmail.com>";
                 if(mail($email, $subject, $message, $sender)){
-                    $info = "We've sent a verification code to your email - $email";
-                    $_SESSION['info'] = $info;
+                    $_SESSION['info'] = "We've sent a verification code to your email - $email";
                     $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
                     header('location: verification');
                     exit();
                 }else{
-                    $errors['otp-error'] = "Failed while sending code!";
+                    $_SESSION['error'] = "Failed while sending code!";
                 }
             }else{
-                $errors['db-error'] = "Failed while inserting data into database!";
+                $_SESSION['error'] = "Failed while inserting data into database!";
             }
         }
 
@@ -56,7 +55,6 @@ $path = basename($_SERVER['REQUEST_URI']);
 
     //if user click verification code submit button
     if(isset($_POST['check'])){
-        $_SESSION['info'] = "";
         $otp = $_POST['otp-1'] .$_POST['otp-2'].$_POST['otp-3'].$_POST['otp-4'].$_POST['otp-5'].$_POST['otp-6'];
         $otp_code = mysqli_real_escape_string($con, $otp);
         $check_code = "SELECT * FROM users WHERE code = $otp_code";
@@ -75,16 +73,15 @@ $path = basename($_SERVER['REQUEST_URI']);
                 header('location: ./dashboard/');
                 exit();
             }else{
-                $errors['otp-error'] = "Failed while updating code!";
+                $_SESSION['error'] = "Failed while updating code!";
             }
         }else{
-            $errors['otp-error'] = "You've entered incorrect code!";
+            $_SESSION['error'] = "You've entered incorrect code!";
         }
     }
 
     //if user click login 
     if(isset($_POST['login'])){
-
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $check_email = "SELECT * FROM users WHERE email = '$email'";
@@ -109,60 +106,61 @@ $path = basename($_SERVER['REQUEST_URI']);
                     $_SESSION['phone_no'] = $fetch['phone_no'];
                     $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
-                    header('location: ./dashboard/');
+
+                    header('location: dashboard/');
 
                     }else{
-                        $info = "It's look like you haven't still verify your email - $email";
-                        $_SESSION['info'] = $info;
+                        $_SESSION['error'] = "It's look like your ".$email." haven't verified yet";
                         header('location: verification');
                     }
                 }
                 else{
-                    $errors['email'] = "Incorrect password!";
+                    $_SESSION['error'] = "Incorrect password!";
                 }
             }
             else{
-                $errors['status'] = "Your Account Is Deactivated Please Contact With Your Supervisor";
+                $_SESSION['error'] = "Your Account Is Deactivated Please Contact With Your Supervisor";
             }
 
         }else{
-            $errors['email'] = "It's look like you're not yet a member! Click on the bottom link to signup.";
+           $_SESSION['error'] = "It's look like you're not yet a member!";
         }
-    }
-     
+    }     
+
     //if user click continue button in forgot password form
     if(isset($_POST['check-email'])){
         $email = mysqli_real_escape_string($con, $_POST['email']);
-        $check_email = "SELECT * FROM users WHERE email='$email'";
-        $run_sql = mysqli_query($con, $check_email);
-        if(mysqli_num_rows($run_sql) > 0){
-            $code = rand(999999, 111111);
-            $insert_code = "UPDATE users SET code = $code WHERE email = '$email'";
-            $run_query =  mysqli_query($con, $insert_code);
-            if($run_query){
-                $subject = "Password Reset Code";
-                $message = "Your password reset code is $code";
-                $sender = "From:  Hadef IT <olamamazen@gmail.com>";
-                if(mail($email, $subject, $message, $sender)){
-                    $info = "We've sent a passwrod reset (OTP) to your email - $email";
-                    $_SESSION['info'] = $info;
-                    $_SESSION['email'] = $email;
+        $query = "SELECT * FROM users WHERE email='$email'";
+        $execute = mysqli_query($con, $query);
+        $fetch_user = array();        
+        
+        if(mysqli_num_rows($execute) > 0){
+            while($fetch = $execute->fetch_assoc()) {
+                $fetch_user = $fetch;
+            }
+            $otp = rand(999999, 111111);
+            $query = "UPDATE users SET code = $otp WHERE email = '$email'";
+            $execute =  mysqli_query($con, $query);
+            
+            if($execute){
+                $msg = "Account Resest (OTP) code ";
+                if(email_reset_user($fetch_user['fname'],$fetch_user['lname'],$email,$msg,$otp)){
                     header('location: reset-code');
-                    exit();
-                }else{
-                    $errors['otp-error'] = "Failed while sending code!";
+                }
+                else
+                {
+                    die();
                 }
             }else{
-                $errors['db-error'] = "Something went wrong!";
+                $_SESSION['error'] = "Something went wrong!";
             }
         }else{
-            $errors['email'] = "This email address does not exist!";
+            $_SESSION['error'] = "This email address does not exist!";
         }
     }
 
     //if user click check reset otp button
     if(isset($_POST['check-reset-otp'])){
-        $_SESSION['info'] = "";
         $otp = $_POST['otp-1'] . $_POST['otp-2'].$_POST['otp-3'].$_POST['otp-4'].$_POST['otp-5'].$_POST['otp-6'];
         $otp_code = mysqli_real_escape_string($con, $otp );
         $check_code = "SELECT * FROM users WHERE code = $otp_code";
@@ -171,23 +169,22 @@ $path = basename($_SERVER['REQUEST_URI']);
             $fetch_data = mysqli_fetch_assoc($code_res);
             $email = $fetch_data['email'];
             $_SESSION['email'] = $email;
-            $info = "Please create a new password that you didn't use it before";
-            $_SESSION['info'] = $info;
+
+            $_SESSION['info']= "Please create a new password that you didn't use it before";
             header('location: new-password');
             exit();
         }else{
             
-            $errors['otp-error'] = "You've entered incorrect code! : " .$otp ;
+            $_SESSION['error'] = "You've entered incorrect code! : " .$otp ;
         }
     }
 
     //if user click change password button
     if(isset($_POST['change-password'])){
-        $_SESSION['info'] = "";
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
         if($password !== $cpassword){
-            $errors['password'] = "Confirm password not matched!";
+            $_SESSION['error'] = "Confirm password not matched!";
         }
         else{
             $code = 0;
@@ -196,11 +193,10 @@ $path = basename($_SERVER['REQUEST_URI']);
             $update_pass = "UPDATE users SET code = $code, password = '$encpass' WHERE email = '$email'";
             $run_query = mysqli_query($con, $update_pass);
             if($run_query){
-                $info = "Your password changed. Now you can login with your new password.";
-                $_SESSION['info'] = $info;
-                header('Location: index.php');
+                $_SESSION['info'] = "Your password changed. Now you can login with your new password.";
+                header('Location: ./');
             }else{
-                $errors['db-error'] = "Failed to change your password!";
+                $_SESSION['error'] = "Failed to change your password!";
             }
         }
     }
