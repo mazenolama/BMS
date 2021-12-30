@@ -76,6 +76,8 @@
      
       $clinet_template_file= "Controllers/email/invoiceTemp.php";
       $subTotal = $amount;
+      $created_date = date('jS F Y', strtotime($created_date));
+      $payment_date = date('jS F Y', strtotime($payment_date));
       $swap_var = array(
         "{COMPANY_NAME}" => $GLOBALS['fetch_company']['name'],
         "{COMPANY_ADDRESS}" => $GLOBALS['fetch_company']['address'],

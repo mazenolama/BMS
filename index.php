@@ -1,7 +1,7 @@
 <?php 
-require_once('./vendor/autoload.php');
-require_once('./database/config.php');
-require_once('./Controllers/AuthController.php'); 
+    require_once('./vendor/autoload.php');
+    require_once('./database/config.php');
+    require_once('./Controllers/AuthController.php'); 
 ?>
 
 <!DOCTYPE html>
