@@ -1,5 +1,6 @@
 
 /*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
+@import url('https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css');
 
 /*# sourceMappingURL=custom.css.map */
 /* Chrome, Safari, Edge, Opera */
@@ -13,20 +14,39 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
 .otp {
-  margin-right: 12px;
-  text-align: center ;
-  padding: 0px 12px !important;
+  -webkit-transition: none;
+  transition: none;
+  width: 60px;
+  height: 60px;
+  text-align: center
 }
 
 .otp:focus {
-  color: #495057;
-  background-color: #fff;
-  border-color: #ff8880;
+  color: #3F4254;
+  background-color: #ffffff;
+  border-color: transparent;
   outline: 0;
-  box-shadow: none
 }
+
+.otp.otp-solid {
+  background-color: #F3F6F9;
+  border-color: transparent;
+  box-shadow: inset 0px 0px 6px #00000054;
+  border-radius: 7px !important;
+  color: #3F4254;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.otp.otp-solid:active,
+.otp.otp-solid.active,
+.otp.otp-solid:focus,
+.otp.otp-solid.focus {
+  background-color: #e9e9e9;
+  border-color: transparent;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
 .bg_one {
   display: block;
   position: fixed;

@@ -30,6 +30,6 @@
     /****************   Tostar Alert  Error  *****************/
 </script>
 
-<?php if(isset($_GET['page'])): $page = $_GET['page']; if(($page=='reset-code')||($page=='verification')): ?>
+<?php  if(($path=='reset-code')||($path=='verification')): ?>
     <script src="assets/js/otp.js"></script>
-<?php endif; endif;?>
+<?php endif;?>

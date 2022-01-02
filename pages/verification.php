@@ -13,13 +13,15 @@
                     <div class="card-body">
                         <p class="text-muted">Please enter the 6-digit verification code we sent via Email:</p>
                         <form action="verification" method="POST" autocomplete="off">
-                            <div class="d-flex flex-row mt-5">
-                                <input type="number" name="otp-1"class="form-control otp" autofocus="">
-                                <input type="number" name="otp-2" class="form-control otp">
-                                <input type="number" name="otp-3" class="form-control otp">
-                                <input type="number" name="otp-4" class="form-control otp">
-                                <input type="number" name="otp-5" class="form-control otp">
-                                <input type="number" name="otp-6" class="form-control otp">
+                            <div class="mb-6 text-center">
+                                <div id="otp" class="flex justify-center">
+                                    <input class="m-2 text-center otp otp-solid rounded focus:border-blue-400 focus:shadow-outline" name="otp-1" type="text" id="first" maxlength="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                                    <input class="m-2 text-center otp otp-solid rounded focus:border-blue-400 focus:shadow-outline" name="otp-2" type="text" id="second" maxlength="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                                    <input class="m-2 text-center otp otp-solid rounded focus:border-blue-400 focus:shadow-outline" name="otp-3" type="text" id="third" maxlength="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                                    <input class="m-2 text-center otp otp-solid rounded focus:border-blue-400 focus:shadow-outline" name="otp-4" type="text" id="fourth" maxlength="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                                    <input class="m-2 text-center otp otp-solid rounded focus:border-blue-400 focus:shadow-outline" name="otp-5" type="text" id="fifth" maxlength="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                                    <input class="m-2 text-center otp otp-solid rounded focus:border-blue-400 focus:shadow-outline" name="otp-6" type="text" id="sixth" maxlength="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                                </div>
                             </div>
                             <div class="text-center mt-5">
                             </div>
