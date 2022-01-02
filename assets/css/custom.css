@@ -1,6 +1,5 @@
 
 /*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
-@import url('https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css');
 
 /*# sourceMappingURL=custom.css.map */
 /* Chrome, Safari, Edge, Opera */
@@ -14,6 +13,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 .otp {
   -webkit-transition: none;
   transition: none;
