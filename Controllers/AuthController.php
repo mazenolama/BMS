@@ -9,14 +9,14 @@ $errors = array();
 
 $path = basename($_SERVER['REQUEST_URI']);
 
-    /*******************        Login Controllers      ********************/
+    /*******************        Auth Controllers      ********************/
         $pageName = $path;
         if(empty($path) || $path =='bills' )
             $pageName='login';
             
         $pageName = str_replace("-"," ",$pageName);
         $pageName = ucfirst($pageName);
-    /*******************        Login Controllers      ********************/
+    /*******************        Auth Controllers      ********************/
 
 
     /*******************       Sing Up Controllers     ********************/
@@ -169,7 +169,7 @@ $path = basename($_SERVER['REQUEST_URI']);
                     if($execute){
                         $msg = "Account Resest (OTP) code ";
 
-                        $subject =  " Hadef Bills " . $msg;
+                        $subject =  "Bills " . $msg;
                         $user_template_file= "Controllers/email/userTemp.php";
                         
                         $swap_var = array(
@@ -193,8 +193,7 @@ $path = basename($_SERVER['REQUEST_URI']);
                             $message = str_replace($key, $swap_var[$key], $message);
                         }
 
-                        $headers =  'From: Hadef Bills <support@hadefbills.com>' . "\r\n" .
-                                        'Bcc: mazen.ziad@hadefit.com' . "\r\n" .
+                        $headers =  'From: Bills <mazen.3lama@gmail.com>' . "\r\n" .
                                         'MIME-Version: 1.0' . "\r\n" .
                                         'Content-Type: text/html; charset=ISO-8859-1' . "\r\n" .
                                         'X-Mailer: PHP/' . phpversion();
@@ -277,12 +276,5 @@ $path = basename($_SERVER['REQUEST_URI']);
         if($email == false)
             header('Location: login');
     }
-
-    /*if($path =='password-changed')
-    {
-        if($_SESSION['info'] == false){
-            header('Location: login');  
-        }
-    }*/
     
 ?>
